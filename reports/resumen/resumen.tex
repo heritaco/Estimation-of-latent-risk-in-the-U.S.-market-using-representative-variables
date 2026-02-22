@@ -1,0 +1,56 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-tabla]{babel}
+\usepackage{amsmath, amssymb, amsthm, bm}
+\usepackage{geometry}
+\usepackage{setspace} 
+\usepackage[authoryear,round]{natbib} 
+
+% Configuración de márgenes (APA estándar)
+\geometry{a4paper, margin=2.54cm}
+
+% Interlineado 1.5
+\onehalfspacing 
+
+% Título ajustado para ahorrar espacio vertical
+\title{\vspace{-2.5cm}\textbf{Estimación de riesgo latente en el mercado de \\ EE. UU. mediante variables representativas}}
+\author{Heriberto Espino Montelongo \\ Owen Paredes Conde \\ Pedro José García Guevara}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Este proyecto propone un índice para pronosticar y evaluar el nivel estructural de riesgo a partir de señales financieras globales. Construimos un índice de riesgo latente $R_t$ combinando variables representativas del desplazamiento hacia activos seguros y estrés financiero (oro, tipo de cambio del dólar, volatilidad implícita y diferenciales de crédito corporativo), mediante un Modelo de Factores Dinámicos (MFD). 
+
+
+Se estima la tendencia estructural $\hat{\tau}_t$ de $R_t$ a partir de Mínimos Cuadrados Penalizados. Mientras que el parámetro de suavizamiento se estima usando el índice de suavidad propuesto por Guerrero (2007) calculado mediante un enfoque numérico, en el cual proponemos considerar conjuntos de validación para minimizar el error de pronóstico.
+
+A diferencia de los filtros estándar, la selección del parámetro de suavizamiento se fundamenta en un índice de suavidad que permite una calibración objetiva de la relación señal-ruido y corrige el sesgo de estimación en los extremos de la muestra.
+
+Nuestra propuesta de $R_t$, enfatiza la capacidad para distinguir entre choques de demanda de seguridad (donde el precio del oro sube y los rendimientos bajan) y episodios de riesgo soberano (donde ambos activos se mueven simultáneamente) para una posible mitigación de riesgo, tomando como antecedente el trabajo de \cite{baur2010}. Nuestro enfoque se apoya en la distinción teórica entre cobertura y refugio. De esta forma, la tendencia $\tau_t$ actúa como un indicador instrumental para la prima de riesgo inobservable $\rho_t$, aislando el componente de crédito de las expectativas de política monetaria.
+
+El pronóstico se centra en $\widehat{\tau}_{t+h|t}$ para horizontes $h \ge 1$, evaluando si el riesgo implícito exhibe cambios estructurales y cómo estos se relacionan con episodios de estrés. La metodología se valida mediante métricas de desempeño (como la raíz del error cuadrático medio); además, se proponen pruebas fuera de muestra, comparando con periodos de estrés y estabilidad. El resultado es un índice del régimen de riesgo en los bonos del Tesoro fácil de interpretar y fundamentado estadísticamente.
+\end{abstract}
+
+\vspace{0.5cm}
+
+\noindent\textbf{Palabras clave:} índice de suavidad; prima de riesgo; volatilidad; oro.
+
+% --- Bibliografía ---
+\renewcommand{\refname}{\normalsize Referencias} 
+\begin{thebibliography}{}
+\small 
+\setlength{\itemsep}{0pt} 
+
+\bibitem[Baur \& Lucey(2010)]{baur2010}
+Baur, D. G., \& Lucey, B. M. (2010). Is gold a hedge or a safe haven? An analysis of stocks, bonds and gold. \textit{Financial Review}, 45(2), 217–229. https://doi.org/10.1111/j.1540-6288.2010.00244.x
+
+\bibitem[Guerrero(2007)]{guerrero2007}
+Guerrero, V. M. (2007). Time series smoothing by penalized least squares. \textit{Statistics \& Probability Letters}, 77(12), 1225–1234. https://doi.org/10.1016/j.spl.2007.03.006
+
+\end{thebibliography}
+
+\end{document}
