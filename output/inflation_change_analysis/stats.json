@@ -1,0 +1,177 @@
+{
+  "sample_start": "2004-12-31",
+  "sample_end": "2026-02-28",
+  "n_months": 253,
+  "factor_transform": "monthly mean -> symmetric percentage change",
+  "inflation_source": "data/us_monthly_inflation_rates_1913_2026.csv",
+  "correlations": {
+    "pearson_contemporaneous": -0.2823618339664267,
+    "spearman_contemporaneous": -0.27518682745138556
+  },
+  "adf_factor_symmetric_pct_change": {
+    "adf_stat": -13.021448496526281,
+    "p_value": 2.449006744915235e-24,
+    "used_lag": 0,
+    "n_obs": 252
+  },
+  "adf_inflation_rate": {
+    "adf_stat": -3.4525248586713744,
+    "p_value": 0.009293425186267848,
+    "used_lag": 10,
+    "n_obs": 242
+  },
+  "granger_factor_change_to_inflation": {
+    "direction": "factor_symmetric_pct_change -> inflation_rate_pct",
+    "max_lag": 12,
+    "significant_at_5pct": true,
+    "significant_lags": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "best_lag": 3,
+    "best_p_value": 0.000517208992766566,
+    "best_f_stat": 6.092481367770565,
+    "lag_results": [
+      {
+        "lag": 1,
+        "f_stat": 7.700878645594754,
+        "p_value": 0.005938007457225305
+      },
+      {
+        "lag": 2,
+        "f_stat": 4.329286791963553,
+        "p_value": 0.014195379599120152
+      },
+      {
+        "lag": 3,
+        "f_stat": 6.092481367770565,
+        "p_value": 0.000517208992766566
+      },
+      {
+        "lag": 4,
+        "f_stat": 4.699265793633632,
+        "p_value": 0.0011421167528284015
+      },
+      {
+        "lag": 5,
+        "f_stat": 3.8056497202426423,
+        "p_value": 0.0024659274040396513
+      },
+      {
+        "lag": 6,
+        "f_stat": 4.061051788638124,
+        "p_value": 0.0006800426016824906
+      },
+      {
+        "lag": 7,
+        "f_stat": 3.7217801386850002,
+        "p_value": 0.0007747106004548777
+      },
+      {
+        "lag": 8,
+        "f_stat": 3.408632097518194,
+        "p_value": 0.0010128011606600656
+      },
+      {
+        "lag": 9,
+        "f_stat": 2.9795364040268764,
+        "p_value": 0.002267104749305815
+      },
+      {
+        "lag": 10,
+        "f_stat": 2.1986751442500956,
+        "p_value": 0.01885604630244173
+      },
+      {
+        "lag": 11,
+        "f_stat": 1.868852118051799,
+        "p_value": 0.04469057594891548
+      },
+      {
+        "lag": 12,
+        "f_stat": 1.4633921357987563,
+        "p_value": 0.13973596134834537
+      }
+    ]
+  },
+  "granger_inflation_to_factor_change": {
+    "direction": "inflation_rate_pct -> factor_symmetric_pct_change",
+    "max_lag": 12,
+    "significant_at_5pct": false,
+    "significant_lags": [],
+    "best_lag": 6,
+    "best_p_value": 0.2977754478522707,
+    "best_f_stat": 1.2178519077165302,
+    "lag_results": [
+      {
+        "lag": 1,
+        "f_stat": 0.0010611583778052938,
+        "p_value": 0.9740392631195931
+      },
+      {
+        "lag": 2,
+        "f_stat": 0.37464044376666555,
+        "p_value": 0.6879280334858752
+      },
+      {
+        "lag": 3,
+        "f_stat": 0.07008669361643241,
+        "p_value": 0.9758600848292812
+      },
+      {
+        "lag": 4,
+        "f_stat": 0.0968687734747792,
+        "p_value": 0.9833857887448625
+      },
+      {
+        "lag": 5,
+        "f_stat": 0.712737429144088,
+        "p_value": 0.6144096503822198
+      },
+      {
+        "lag": 6,
+        "f_stat": 1.2178519077165302,
+        "p_value": 0.2977754478522707
+      },
+      {
+        "lag": 7,
+        "f_stat": 1.0055270355135264,
+        "p_value": 0.428027322842127
+      },
+      {
+        "lag": 8,
+        "f_stat": 1.0126641793038131,
+        "p_value": 0.42716894379439124
+      },
+      {
+        "lag": 9,
+        "f_stat": 0.940444086828109,
+        "p_value": 0.4907748956766821
+      },
+      {
+        "lag": 10,
+        "f_stat": 0.8352229178387831,
+        "p_value": 0.5951219474394892
+      },
+      {
+        "lag": 11,
+        "f_stat": 0.8699571345335823,
+        "p_value": 0.5706017947159485
+      },
+      {
+        "lag": 12,
+        "f_stat": 0.795733086469067,
+        "p_value": 0.6546636976168502
+      }
+    ]
+  }
+}

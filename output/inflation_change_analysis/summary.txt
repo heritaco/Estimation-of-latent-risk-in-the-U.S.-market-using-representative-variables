@@ -1,0 +1,41 @@
+Factor change vs U.S. monthly inflation analysis
+===============================================
+
+Sample start: 2004-12-31
+Sample end: 2026-02-28
+Monthly observations: 253
+
+Factor transformation:
+Daily latent factor aggregated to monthly mean, then transformed using symmetric percentage change:
+200 * (x_t - x_{t-1}) / (|x_t| + |x_{t-1}|).
+This is used instead of simple pct_change because the latent factor can cross zero.
+
+Inflation source:
+data/us_monthly_inflation_rates_1913_2026.csv
+
+Contemporaneous correlation:
+Pearson: -0.282362
+Spearman: -0.275187
+
+Strongest cross-correlation in +/- 12 months:
+Lag: 1 months
+Correlation: -0.289615
+
+ADF stationarity checks:
+Factor symmetric % change p-value: 0.000000
+Inflation rate p-value: 0.009293
+
+Granger causality note:
+This is predictive causality, not structural economic causation.
+
+Factor change -> Inflation:
+Significant at 5%: True
+Best lag: 3
+Best p-value: 0.000517
+Significant lags: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+
+Inflation -> Factor change:
+Significant at 5%: False
+Best lag: 6
+Best p-value: 0.297775
+Significant lags: []

@@ -1,0 +1,35 @@
+{
+  "training_start": "2004-11-18",
+  "training_end_exclusive": "2008-01-01",
+  "backtest_start": "2008-01-01",
+  "backtest_end_exclusive": "2009-01-01",
+  "n_train": 813,
+  "n_backtest": 262,
+  "difference_order": 2,
+  "selected_s_unit": 0.994838190906475,
+  "selected_validation_mse": 6.7894388878751775,
+  "training_volatility": 2.495149752679174,
+  "training_sigma2_hat": 7.048257204832522,
+  "interval_summary": {
+    "90.0%": {
+      "outside_count": 0,
+      "outside_share": 0.0
+    },
+    "95.0%": {
+      "outside_count": 0,
+      "outside_share": 0.0
+    },
+    "97.5%": {
+      "outside_count": 0,
+      "outside_share": 0.0
+    },
+    "99.0%": {
+      "outside_count": 0,
+      "outside_share": 0.0
+    },
+    "99.9%": {
+      "outside_count": 0,
+      "outside_share": 0.0
+    }
+  }
+}

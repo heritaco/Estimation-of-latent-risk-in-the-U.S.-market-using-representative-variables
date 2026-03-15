@@ -1,0 +1,177 @@
+{
+  "sample_start": "2004-11-30",
+  "sample_end": "2026-02-28",
+  "n_months": 254,
+  "inflation_source": "data/us_monthly_inflation_rates_1913_2026.csv",
+  "pure_inflation_construction": {
+    "full_history_base": 100.0,
+    "sample_rebased_base": 100.0,
+    "formula": "cumprod(1 + inflation_rate/100)"
+  },
+  "correlations": {
+    "pearson_contemporaneous": 0.3047032923923256,
+    "spearman_contemporaneous": 0.2804839402143343
+  },
+  "adf_factor_monthly_mean": {
+    "adf_stat": -2.915831351353528,
+    "p_value": 0.04353775678710424,
+    "used_lag": 1,
+    "n_obs": 252
+  },
+  "adf_pure_inflation_index": {
+    "adf_stat": 1.1032949836951391,
+    "p_value": 0.9952446460279398,
+    "used_lag": 12,
+    "n_obs": 241
+  },
+  "granger_factor_to_pure_inflation": {
+    "direction": "latent_factor_monthly_mean -> price_index_rebased",
+    "max_lag": 12,
+    "significant_at_5pct": true,
+    "significant_lags": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "best_lag": 2,
+    "best_p_value": 0.00011225110668772004,
+    "best_f_stat": 9.43802417956227,
+    "lag_results": [
+      {
+        "lag": 1,
+        "f_stat": 0.27349909130848826,
+        "p_value": 0.6014573338911207
+      },
+      {
+        "lag": 2,
+        "f_stat": 9.43802417956227,
+        "p_value": 0.00011225110668772004
+      },
+      {
+        "lag": 3,
+        "f_stat": 4.510527240050248,
+        "p_value": 0.004230353453068929
+      },
+      {
+        "lag": 4,
+        "f_stat": 3.9532721471158867,
+        "p_value": 0.003976339124537404
+      },
+      {
+        "lag": 5,
+        "f_stat": 3.1663068243301113,
+        "p_value": 0.008699600744198632
+      },
+      {
+        "lag": 6,
+        "f_stat": 2.4011020268661962,
+        "p_value": 0.028535114057579053
+      },
+      {
+        "lag": 7,
+        "f_stat": 2.198663329432723,
+        "p_value": 0.035227144470526786
+      },
+      {
+        "lag": 8,
+        "f_stat": 2.0884459924514656,
+        "p_value": 0.03782272592060774
+      },
+      {
+        "lag": 9,
+        "f_stat": 1.7695462387384022,
+        "p_value": 0.0751179087100416
+      },
+      {
+        "lag": 10,
+        "f_stat": 1.577702494832018,
+        "p_value": 0.11439651111173407
+      },
+      {
+        "lag": 11,
+        "f_stat": 1.5521691766449597,
+        "p_value": 0.1146672508308152
+      },
+      {
+        "lag": 12,
+        "f_stat": 1.442306992264608,
+        "p_value": 0.14842300548885318
+      }
+    ]
+  },
+  "granger_pure_inflation_to_factor": {
+    "direction": "price_index_rebased -> latent_factor_monthly_mean",
+    "max_lag": 12,
+    "significant_at_5pct": false,
+    "significant_lags": [],
+    "best_lag": 12,
+    "best_p_value": 0.0821999687605768,
+    "best_f_stat": 1.6403564158703459,
+    "lag_results": [
+      {
+        "lag": 1,
+        "f_stat": 0.03075926981168508,
+        "p_value": 0.8609204993535848
+      },
+      {
+        "lag": 2,
+        "f_stat": 2.007968422574551,
+        "p_value": 0.13644692114640525
+      },
+      {
+        "lag": 3,
+        "f_stat": 1.5624545306559252,
+        "p_value": 0.1990934723082164
+      },
+      {
+        "lag": 4,
+        "f_stat": 1.279169142724448,
+        "p_value": 0.2787820766725389
+      },
+      {
+        "lag": 5,
+        "f_stat": 1.594654397103128,
+        "p_value": 0.16230057996773406
+      },
+      {
+        "lag": 6,
+        "f_stat": 1.684667200274989,
+        "p_value": 0.12548196297273767
+      },
+      {
+        "lag": 7,
+        "f_stat": 1.7513099569164756,
+        "p_value": 0.09815087202127233
+      },
+      {
+        "lag": 8,
+        "f_stat": 1.4347859148396693,
+        "p_value": 0.18288132465020257
+      },
+      {
+        "lag": 9,
+        "f_stat": 1.3617204794913687,
+        "p_value": 0.20673776237632221
+      },
+      {
+        "lag": 10,
+        "f_stat": 1.2653122739092326,
+        "p_value": 0.2513968322544172
+      },
+      {
+        "lag": 11,
+        "f_stat": 1.5881835380718423,
+        "p_value": 0.10348609447304022
+      },
+      {
+        "lag": 12,
+        "f_stat": 1.6403564158703459,
+        "p_value": 0.0821999687605768
+      }
+    ]
+  }
+}

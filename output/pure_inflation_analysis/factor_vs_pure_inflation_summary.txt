@@ -1,0 +1,40 @@
+Factor vs pure inflation analysis
+==================================
+
+Sample start: 2004-11-30
+Sample end: 2026-02-28
+Monthly observations: 254
+
+Pure inflation construction:
+Source monthly inflation rates: data/us_monthly_inflation_rates_1913_2026.csv
+Pure inflation index = cumulative product of (1 + monthly_rate/100).
+Full-history base: 100.0
+Sample-rebased level for analysis: 100.0 at first overlap month.
+
+Contemporaneous correlation:
+Pearson: 0.304703
+Spearman: 0.280484
+
+Strongest cross-correlation in +/- 12 months:
+Lag: 12 months
+Correlation: 0.447817
+
+ADF stationarity checks:
+Latent factor monthly mean p-value: 0.043538
+Pure inflation index p-value: 0.995245
+
+Granger causality note:
+This is predictive causality, not structural economic causation.
+Because pure inflation is a level series, non-stationarity can matter for interpretation.
+
+Factor -> Pure inflation:
+Significant at 5%: True
+Best lag: 2
+Best p-value: 0.000112
+Significant lags: [2, 3, 4, 5, 6, 7, 8]
+
+Pure inflation -> Factor:
+Significant at 5%: False
+Best lag: 12
+Best p-value: 0.082200
+Significant lags: []

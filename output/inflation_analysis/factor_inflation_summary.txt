@@ -1,39 +1,39 @@
 Factor vs U.S. inflation analysis
 ====================================
 
-Sample start: 2004-12-31
-Sample end: 2024-12-31
-Annual observations: 21
+Sample start: 2004-11-30
+Sample end: 2026-02-28
+Monthly observations: 254
 
 Inflation definition:
-Local file: data/FPCPITOTLZGUSA.csv
-Column used: FPCPITOTLZGUSA
-Detected frequency: annual
+Local file: data/us_monthly_inflation_rates_1913_2026.csv
+Column used: monthly matrix Jan-Dec
+Detected frequency: monthly
 The daily latent factor was aggregated to the same frequency using the mean over each period.
 
 Contemporaneous correlation:
-Pearson: 0.095974
-Spearman: -0.111688
+Pearson: -0.108280
+Spearman: -0.073540
 
 Strongest cross-correlation in +/- 12 periods:
-Lag: -7 periods
-Correlation: -0.617314
+Lag: 4 periods
+Correlation: 0.151855
 
 ADF stationarity checks:
-Latent factor period mean p-value: 0.970643
-Inflation p-value: 0.705643
+Latent factor period mean p-value: 0.043538
+Inflation p-value: 0.030187
 
 Granger causality note:
 This is predictive causality, not structural economic causation.
 
 Factor -> Inflation:
-Significant at 5%: False
-Best lag: 1
-Best p-value: 0.197844
-Significant lags: []
+Significant at 5%: True
+Best lag: 2
+Best p-value: 0.000344
+Significant lags: [2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 Inflation -> Factor:
-Significant at 5%: False
-Best lag: 2
-Best p-value: 0.205370
-Significant lags: []
+Significant at 5%: True
+Best lag: 11
+Best p-value: 0.036392
+Significant lags: [11]

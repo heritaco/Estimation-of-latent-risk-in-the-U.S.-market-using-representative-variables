@@ -1,0 +1,36 @@
+Latent factor polynomial trend backtest
+======================================
+
+Training start: 2004-11-18
+Training end: 2007-12-31
+Backtest start: 2008-01-01
+Backtest end: 2008-12-31
+Training observations: 813
+Backtest observations: 262
+
+Difference order d: 2
+Selected smoothness s: 0.994838
+Validation MSE at selected s: 6.789439
+Estimated residual volatility: 2.495150
+Estimated sigma^2 from full training fit: 7.048257
+
+Out-of-band observations by confidence level:
+90.0%: 0 dates (0.00% of the backtest window)
+95.0%: 0 dates (0.00% of the backtest window)
+97.5%: 0 dates (0.00% of the backtest window)
+99.0%: 0 dates (0.00% of the backtest window)
+99.9%: 0 dates (0.00% of the backtest window)
+
+Largest absolute forecast errors:
+            actual  forecast  forecast_error  step
+Date                                              
+2008-12-05 20.7202  -39.0772         59.7974   244
+2008-11-20 20.7453  -38.5311         59.2764   233
+2008-12-04 19.2612  -39.0273         58.2885   243
+2008-12-03 18.8323  -38.9775         57.8099   242
+2008-12-09 18.5008  -39.1770         57.6778   246
+2008-11-19 19.1888  -38.4817         57.6705   232
+2008-12-01 18.6059  -38.8780         57.4840   240
+2008-11-21 18.6924  -38.5806         57.2729   234
+2008-12-02 18.2018  -38.9278         57.1296   241
+2008-12-08 17.7858  -39.1271         56.9129   245

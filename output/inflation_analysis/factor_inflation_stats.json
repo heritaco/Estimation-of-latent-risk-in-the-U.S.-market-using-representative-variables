@@ -1,90 +1,182 @@
 {
-  "sample_start": "2004-12-31",
-  "sample_end": "2024-12-31",
-  "n_periods": 21,
+  "sample_start": "2004-11-30",
+  "sample_end": "2026-02-28",
+  "n_periods": 254,
   "inflation_source": {
-    "path": "data/FPCPITOTLZGUSA.csv",
-    "value_column": "FPCPITOTLZGUSA",
-    "date_column": "observation_date",
-    "frequency_label": "annual",
-    "resample_rule": "YE",
-    "suggested_granger_lag": 4
+    "path": "data/us_monthly_inflation_rates_1913_2026.csv",
+    "value_column": "monthly matrix Jan-Dec",
+    "date_column": "Year + month columns",
+    "frequency_label": "monthly",
+    "resample_rule": "ME",
+    "suggested_granger_lag": 12
   },
   "correlations": {
-    "pearson_contemporaneous": 0.09597360379440886,
-    "spearman_contemporaneous": -0.11168831168831168
+    "pearson_contemporaneous": -0.10827985918939734,
+    "spearman_contemporaneous": -0.07354044079529602
   },
   "adf_factor_period_mean": {
-    "adf_stat": 0.1719331280246765,
-    "p_value": 0.9706427376320285,
-    "used_lag": 5,
-    "n_obs": 15
+    "adf_stat": -2.915831351353528,
+    "p_value": 0.04353775678710424,
+    "used_lag": 1,
+    "n_obs": 252
   },
   "adf_inflation_rate": {
-    "adf_stat": -1.1234195095966655,
-    "p_value": 0.7056426967338787,
-    "used_lag": 8,
-    "n_obs": 12
+    "adf_stat": -3.0535536692899314,
+    "p_value": 0.030186880872709848,
+    "used_lag": 11,
+    "n_obs": 242
   },
   "granger_factor_to_inflation": {
     "direction": "latent_factor_period_mean -> inflation_rate_pct",
-    "max_lag": 4,
-    "significant_at_5pct": false,
-    "significant_lags": [],
-    "best_lag": 1,
-    "best_p_value": 0.19784400295082955,
-    "best_f_stat": 1.7959235762828818,
+    "max_lag": 12,
+    "significant_at_5pct": true,
+    "significant_lags": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "best_lag": 2,
+    "best_p_value": 0.00034394841696394884,
+    "best_f_stat": 8.23814569006422,
     "lag_results": [
       {
         "lag": 1,
-        "f_stat": 1.7959235762828818,
-        "p_value": 0.19784400295082955
+        "f_stat": 0.6087096931915963,
+        "p_value": 0.4360120949592234
       },
       {
         "lag": 2,
-        "f_stat": 1.2704585777766186,
-        "p_value": 0.3111566909026175
+        "f_stat": 8.23814569006422,
+        "p_value": 0.00034394841696394884
       },
       {
         "lag": 3,
-        "f_stat": 0.81354841655371,
-        "p_value": 0.5126799499955339
+        "f_stat": 5.319051928483634,
+        "p_value": 0.0014433781045511667
       },
       {
         "lag": 4,
-        "f_stat": 0.6209286338685415,
-        "p_value": 0.6604035418491633
+        "f_stat": 4.404150861930953,
+        "p_value": 0.001871268480522938
+      },
+      {
+        "lag": 5,
+        "f_stat": 3.2837687128920336,
+        "p_value": 0.006911377593884615
+      },
+      {
+        "lag": 6,
+        "f_stat": 2.614519934550877,
+        "p_value": 0.01795081601839255
+      },
+      {
+        "lag": 7,
+        "f_stat": 2.6106338546913532,
+        "p_value": 0.013012071270692618
+      },
+      {
+        "lag": 8,
+        "f_stat": 2.1877215709985665,
+        "p_value": 0.029246219716889146
+      },
+      {
+        "lag": 9,
+        "f_stat": 1.9729349948565331,
+        "p_value": 0.043433098278762294
+      },
+      {
+        "lag": 10,
+        "f_stat": 2.127460011813064,
+        "p_value": 0.023437693644047932
+      },
+      {
+        "lag": 11,
+        "f_stat": 1.7416194754984338,
+        "p_value": 0.06591468177166875
+      },
+      {
+        "lag": 12,
+        "f_stat": 1.7908708910757023,
+        "p_value": 0.05100347748187033
       }
     ]
   },
   "granger_inflation_to_factor": {
     "direction": "inflation_rate_pct -> latent_factor_period_mean",
-    "max_lag": 4,
-    "significant_at_5pct": false,
-    "significant_lags": [],
-    "best_lag": 2,
-    "best_p_value": 0.20537004517432714,
-    "best_f_stat": 1.7762103898723383,
+    "max_lag": 12,
+    "significant_at_5pct": true,
+    "significant_lags": [
+      11
+    ],
+    "best_lag": 11,
+    "best_p_value": 0.03639216739939417,
+    "best_f_stat": 1.9342392249205582,
     "lag_results": [
       {
         "lag": 1,
-        "f_stat": 0.27547494616993073,
-        "p_value": 0.6064602042006878
+        "f_stat": 0.11622231063575139,
+        "p_value": 0.7334546993138799
       },
       {
         "lag": 2,
-        "f_stat": 1.7762103898723383,
-        "p_value": 0.20537004517432714
+        "f_stat": 1.8011809548157758,
+        "p_value": 0.16726554245827152
       },
       {
         "lag": 3,
-        "f_stat": 1.3206419200900017,
-        "p_value": 0.3171403710653357
+        "f_stat": 1.3451615135108546,
+        "p_value": 0.26031604936737696
       },
       {
         "lag": 4,
-        "f_stat": 1.674984635350967,
-        "p_value": 0.24764367129372866
+        "f_stat": 1.4292802118816343,
+        "p_value": 0.22487663380332099
+      },
+      {
+        "lag": 5,
+        "f_stat": 1.4659844025229611,
+        "p_value": 0.2016944793965869
+      },
+      {
+        "lag": 6,
+        "f_stat": 1.6586954621679992,
+        "p_value": 0.1320120621439918
+      },
+      {
+        "lag": 7,
+        "f_stat": 1.7341363779050052,
+        "p_value": 0.10192884132261082
+      },
+      {
+        "lag": 8,
+        "f_stat": 1.5407966490233038,
+        "p_value": 0.14411643146089503
+      },
+      {
+        "lag": 9,
+        "f_stat": 1.3741057988631138,
+        "p_value": 0.20090185167618826
+      },
+      {
+        "lag": 10,
+        "f_stat": 1.8261882800562668,
+        "p_value": 0.057301641882386685
+      },
+      {
+        "lag": 11,
+        "f_stat": 1.9342392249205582,
+        "p_value": 0.03639216739939417
+      },
+      {
+        "lag": 12,
+        "f_stat": 1.7032501783933607,
+        "p_value": 0.06751783827852977
       }
     ]
   }
