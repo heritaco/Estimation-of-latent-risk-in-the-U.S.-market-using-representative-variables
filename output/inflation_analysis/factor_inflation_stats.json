@@ -1,0 +1,91 @@
+{
+  "sample_start": "2004-12-31",
+  "sample_end": "2024-12-31",
+  "n_periods": 21,
+  "inflation_source": {
+    "path": "data/FPCPITOTLZGUSA.csv",
+    "value_column": "FPCPITOTLZGUSA",
+    "date_column": "observation_date",
+    "frequency_label": "annual",
+    "resample_rule": "YE",
+    "suggested_granger_lag": 4
+  },
+  "correlations": {
+    "pearson_contemporaneous": 0.09597360379440886,
+    "spearman_contemporaneous": -0.11168831168831168
+  },
+  "adf_factor_period_mean": {
+    "adf_stat": 0.1719331280246765,
+    "p_value": 0.9706427376320285,
+    "used_lag": 5,
+    "n_obs": 15
+  },
+  "adf_inflation_rate": {
+    "adf_stat": -1.1234195095966655,
+    "p_value": 0.7056426967338787,
+    "used_lag": 8,
+    "n_obs": 12
+  },
+  "granger_factor_to_inflation": {
+    "direction": "latent_factor_period_mean -> inflation_rate_pct",
+    "max_lag": 4,
+    "significant_at_5pct": false,
+    "significant_lags": [],
+    "best_lag": 1,
+    "best_p_value": 0.19784400295082955,
+    "best_f_stat": 1.7959235762828818,
+    "lag_results": [
+      {
+        "lag": 1,
+        "f_stat": 1.7959235762828818,
+        "p_value": 0.19784400295082955
+      },
+      {
+        "lag": 2,
+        "f_stat": 1.2704585777766186,
+        "p_value": 0.3111566909026175
+      },
+      {
+        "lag": 3,
+        "f_stat": 0.81354841655371,
+        "p_value": 0.5126799499955339
+      },
+      {
+        "lag": 4,
+        "f_stat": 0.6209286338685415,
+        "p_value": 0.6604035418491633
+      }
+    ]
+  },
+  "granger_inflation_to_factor": {
+    "direction": "inflation_rate_pct -> latent_factor_period_mean",
+    "max_lag": 4,
+    "significant_at_5pct": false,
+    "significant_lags": [],
+    "best_lag": 2,
+    "best_p_value": 0.20537004517432714,
+    "best_f_stat": 1.7762103898723383,
+    "lag_results": [
+      {
+        "lag": 1,
+        "f_stat": 0.27547494616993073,
+        "p_value": 0.6064602042006878
+      },
+      {
+        "lag": 2,
+        "f_stat": 1.7762103898723383,
+        "p_value": 0.20537004517432714
+      },
+      {
+        "lag": 3,
+        "f_stat": 1.3206419200900017,
+        "p_value": 0.3171403710653357
+      },
+      {
+        "lag": 4,
+        "f_stat": 1.674984635350967,
+        "p_value": 0.24764367129372866
+      }
+    ]
+  }
+}

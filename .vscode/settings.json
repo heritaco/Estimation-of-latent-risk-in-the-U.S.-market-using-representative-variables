@@ -3,5 +3,7 @@
   "jupyter.notebookFileRoot": "${workspaceFolder}",
 
   // Specify the environment file for Python
-  "python.envFile": "${workspaceFolder}/.vscode/.env"
+  "python.envFile": "${workspaceFolder}/.vscode/.env",
+  "python-envs.defaultEnvManager": "ms-python.python:conda",
+  "python-envs.defaultPackageManager": "ms-python.python:conda"
 }

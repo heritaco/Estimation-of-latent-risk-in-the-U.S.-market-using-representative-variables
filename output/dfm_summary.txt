@@ -1,0 +1,154 @@
+Robust DFM latent-series pipeline
+========================================
+
+Best model
+{
+  "k_factors": 1,
+  "factor_order": 2,
+  "error_order": 1,
+  "error_cov_type": "diagonal",
+  "fit_success": true,
+  "converged": true,
+  "aic": -57133.34887137992,
+  "bic": -57040.61688889281,
+  "llf": 28580.67443568996,
+  "pass_ljung_box": false,
+  "pass_jarque_bera": false,
+  "pass_arch": false,
+  "diagnostics_passed_count": 1,
+  "overall_pass": false,
+  "used_columns": [
+    "VIX",
+    "WTI",
+    "GOLD",
+    "DXY"
+  ],
+  "fit_error": null
+}
+
+Selection rule outcome
+No model passed all diagnostics; selected the model with the highest diagnostics count, then lowest AIC, then simplicity.
+
+Top ranked model rows
+ k_factors  factor_order  error_order error_cov_type  fit_success  converged  diagnostics_passed_count  overall_pass           aic           bic           llf fit_error
+         1             2            1       diagonal         True       True                         1         False -57133.348871 -57040.616889  28580.674436       NaN
+         1             1            1       diagonal         True       True                         1         False -57133.167600 -57047.059331  28579.583800       NaN
+         1             2            0   unstructured         True       True                         1         False  15191.314901  15297.294310  -7579.657451       NaN
+         1             1            0   unstructured         True       True                         1         False  15194.055028  15293.410724  -7582.027514       NaN
+         1             2            0       diagonal         True       True                         1         False  36640.206645  36706.443776 -18310.103323       NaN
+
+Best model statsmodels summary
+                                   Statespace Model Results                                  
+=============================================================================================
+Dep. Variable:         ['VIX', 'WTI', 'GOLD', 'DXY']   No. Observations:                 5562
+Model:             DynamicFactor(factors=1, order=2)   Log Likelihood               28580.674
+                                      + AR(1) errors   AIC                         -57133.349
+Date:                               Sat, 14 Mar 2026   BIC                         -57040.617
+Time:                                       23:26:55   HQIC                        -57101.022
+Sample:                                   11-18-2004                                         
+                                        - 03-13-2026                                         
+Covariance Type:                                 opg                                         
+===============================================================================================================
+Ljung-Box (L1) (Q):     24.91, 53.53, 5.64, 1.90   Jarque-Bera (JB):   13070.90, 63119629.59, 12142.68, 1623.60
+Prob(Q):                  0.00, 0.00, 0.02, 0.17   Prob(JB):                             0.00, 0.00, 0.00, 0.00
+Heteroskedasticity (H):   1.25, 3.28, 0.69, 0.61   Skew:                             1.21, -10.21, -0.34, -0.08
+Prob(H) (two-sided):      0.00, 0.00, 0.00, 0.00   Kurtosis:                         10.11, 524.48, 10.21, 5.64
+                           Results for equation VIX                           
+==============================================================================
+                 coef    std err          z      P>|z|      [0.025      0.975]
+------------------------------------------------------------------------------
+loading.f1    -0.0255      0.003     -9.606      0.000      -0.031      -0.020
+                           Results for equation WTI                           
+==============================================================================
+                 coef    std err          z      P>|z|      [0.025      0.975]
+------------------------------------------------------------------------------
+loading.f1     0.0232      0.002     13.874      0.000       0.020       0.026
+                          Results for equation GOLD                           
+==============================================================================
+                 coef    std err          z      P>|z|      [0.025      0.975]
+------------------------------------------------------------------------------
+loading.f1     0.0147      0.000     30.714      0.000       0.014       0.016
+                           Results for equation DXY                           
+==============================================================================
+                 coef    std err          z      P>|z|      [0.025      0.975]
+------------------------------------------------------------------------------
+loading.f1    -0.0297      0.001    -28.557      0.000      -0.032      -0.028
+                        Results for factor equation f1                        
+==============================================================================
+                 coef    std err          z      P>|z|      [0.025      0.975]
+------------------------------------------------------------------------------
+L1.f1          1.0328      0.019     55.802      0.000       0.997       1.069
+L2.f1         -0.0339      0.018     -1.830      0.067      -0.070       0.002
+                      Results for error equation e(VIX)                       
+==============================================================================
+                 coef    std err          z      P>|z|      [0.025      0.975]
+------------------------------------------------------------------------------
+L1.e(VIX)      0.9745      0.003    362.324      0.000       0.969       0.980
+                      Results for error equation e(WTI)                       
+==============================================================================
+                 coef    std err          z      P>|z|      [0.025      0.975]
+------------------------------------------------------------------------------
+L1.e(WTI)      0.9941      0.000   2039.791      0.000       0.993       0.995
+                      Results for error equation e(GOLD)                      
+==============================================================================
+                 coef    std err          z      P>|z|      [0.025      0.975]
+------------------------------------------------------------------------------
+L1.e(GOLD)     0.9997   8.61e-05   1.16e+04      0.000       1.000       1.000
+                      Results for error equation e(DXY)                       
+==============================================================================
+                 coef    std err          z      P>|z|      [0.025      0.975]
+------------------------------------------------------------------------------
+L1.e(DXY)      0.9991      0.000   2066.621      0.000       0.998       1.000
+                            Error covariance matrix                            
+===============================================================================
+                  coef    std err          z      P>|z|      [0.025      0.975]
+-------------------------------------------------------------------------------
+sigma2.VIX      0.0410      0.000    106.439      0.000       0.040       0.042
+sigma2.WTI      0.0101   3.44e-05    294.409      0.000       0.010       0.010
+sigma2.GOLD     0.0004   1.37e-05     27.767      0.000       0.000       0.000
+sigma2.DXY      0.0010   5.92e-05     17.165      0.000       0.001       0.001
+===============================================================================
+
+Warnings:
+[1] Covariance matrix calculated using the outer product of gradients (complex-step).
+
+Residual diagnostics
+{
+  "pass_ljung_box": false,
+  "pass_jarque_bera": false,
+  "pass_arch": false,
+  "detail": {
+    "VIX": {
+      "ljung_box_pvalue": 3.1926554721634877e-06,
+      "jarque_bera_pvalue": 0.0,
+      "arch_pvalue": 1.8015221905723279e-53,
+      "pass_ljung_box": false,
+      "pass_jarque_bera": false,
+      "pass_arch": false
+    },
+    "WTI": {
+      "ljung_box_pvalue": 1.0461881374381388e-28,
+      "jarque_bera_pvalue": 0.0,
+      "arch_pvalue": 2.2627146086997558e-86,
+      "pass_ljung_box": false,
+      "pass_jarque_bera": false,
+      "pass_arch": false
+    },
+    "GOLD": {
+      "ljung_box_pvalue": 0.8152391887367068,
+      "jarque_bera_pvalue": 0.0,
+      "arch_pvalue": 6.4823823395932725e-75,
+      "pass_ljung_box": true,
+      "pass_jarque_bera": false,
+      "pass_arch": false
+    },
+    "DXY": {
+      "ljung_box_pvalue": 0.10964705804497199,
+      "jarque_bera_pvalue": 0.0,
+      "arch_pvalue": 5.284772788313674e-83,
+      "pass_ljung_box": true,
+      "pass_jarque_bera": false,
+      "pass_arch": false
+    }
+  }
+}

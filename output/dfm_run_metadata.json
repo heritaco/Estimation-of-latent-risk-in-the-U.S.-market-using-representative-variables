@@ -1,0 +1,279 @@
+{
+  "started_at": "2026-03-15T05:05:14.586798Z",
+  "completed_at": "2026-03-15T05:26:56.087237Z",
+  "stage": "writing_artifacts",
+  "series_specs": [
+    {
+      "name": "VIX",
+      "source": "yahoo",
+      "ticker": "^VIX",
+      "kind": "positive",
+      "required": true
+    },
+    {
+      "name": "WTI",
+      "source": "yahoo",
+      "ticker": "CL=F",
+      "kind": "positive",
+      "required": true
+    },
+    {
+      "name": "GOLD",
+      "source": "yahoo",
+      "ticker": "GLD",
+      "kind": "positive",
+      "required": true
+    },
+    {
+      "name": "DXY",
+      "source": "yahoo",
+      "ticker": "DX-Y.NYB",
+      "kind": "positive",
+      "required": true
+    }
+  ],
+  "downloads": [
+    {
+      "name": "VIX",
+      "source": "yahoo",
+      "ticker": "^VIX",
+      "cache_path": "data/yahoo___VIX.csv",
+      "loaded_from_cache": true,
+      "fallback_used": false,
+      "n_obs": 6588,
+      "start": "2000-01-03",
+      "end": "2026-03-13",
+      "series_meta": {
+        "name": "VIX",
+        "start": "2000-01-03",
+        "end": "2026-03-13",
+        "use_log": true,
+        "freq": "B"
+      },
+      "notes": {}
+    },
+    {
+      "name": "WTI",
+      "source": "yahoo",
+      "ticker": "CL=F",
+      "cache_path": "data/yahoo__CL_F.csv",
+      "loaded_from_cache": true,
+      "fallback_used": false,
+      "n_obs": 6416,
+      "start": "2000-08-23",
+      "end": "2026-03-13",
+      "series_meta": {
+        "name": "WTI",
+        "start": "2000-08-23",
+        "end": "2026-03-13",
+        "use_log": true,
+        "freq": "B"
+      },
+      "notes": {}
+    },
+    {
+      "name": "GOLD",
+      "source": "yahoo",
+      "ticker": "GLD",
+      "cache_path": "data/yahoo__GLD.csv",
+      "loaded_from_cache": true,
+      "fallback_used": false,
+      "n_obs": 5362,
+      "start": "2004-11-18",
+      "end": "2026-03-13",
+      "series_meta": {
+        "name": "GOLD",
+        "start": "2004-11-18",
+        "end": "2026-03-13",
+        "use_log": true,
+        "freq": "B"
+      },
+      "notes": {}
+    },
+    {
+      "name": "DXY",
+      "source": "yahoo",
+      "ticker": "DX-Y.NYB",
+      "cache_path": "data/yahoo__DX-Y.NYB.csv",
+      "loaded_from_cache": true,
+      "fallback_used": false,
+      "n_obs": 6617,
+      "start": "2000-01-03",
+      "end": "2026-03-13",
+      "series_meta": {
+        "name": "DXY",
+        "start": "2000-01-03",
+        "end": "2026-03-13",
+        "use_log": true,
+        "freq": "B"
+      },
+      "notes": {}
+    }
+  ],
+  "panel_checks": {
+    "pre_alignment": {
+      "shape": [
+        6622,
+        4
+      ],
+      "start": "2000-01-03",
+      "end": "2026-03-13",
+      "duplicate_dates": 0,
+      "missing_counts": {
+        "VIX": 34,
+        "WTI": 206,
+        "GOLD": 1260,
+        "DXY": 5
+      },
+      "nonpositive_counts": {
+        "VIX": 0,
+        "WTI": 1,
+        "GOLD": 0,
+        "DXY": 0
+      },
+      "constant_columns": []
+    },
+    "post_alignment_before_drop": {
+      "shape": [
+        6835,
+        4
+      ],
+      "start": "2000-01-03",
+      "end": "2026-03-13",
+      "duplicate_dates": 0,
+      "missing_counts": {
+        "VIX": 0,
+        "WTI": 167,
+        "GOLD": 1273,
+        "DXY": 0
+      },
+      "nonpositive_counts": {
+        "VIX": 0,
+        "WTI": 1,
+        "GOLD": 0,
+        "DXY": 0
+      },
+      "constant_columns": []
+    },
+    "final_panel": {
+      "shape": [
+        5562,
+        4
+      ],
+      "start": "2004-11-18",
+      "end": "2026-03-13",
+      "duplicate_dates": 0,
+      "missing_counts": {
+        "VIX": 0,
+        "WTI": 0,
+        "GOLD": 0,
+        "DXY": 0
+      },
+      "nonpositive_counts": {
+        "VIX": 0,
+        "WTI": 1,
+        "GOLD": 0,
+        "DXY": 0
+      },
+      "constant_columns": []
+    }
+  },
+  "transform_checks": {
+    "shape": [
+      5562,
+      4
+    ],
+    "nan_total": 0,
+    "inf_total": 0,
+    "zero_var_columns": [],
+    "mean_abs_max": 2.6163098217128463e-15,
+    "std_dev_from_1_max": 2.220446049250313e-16
+  },
+  "flooring_actions": [
+    {
+      "series": "WTI",
+      "replaced_count": 1,
+      "floor_value": 5.005000114440918
+    }
+  ],
+  "best_model": {
+    "k_factors": 1,
+    "factor_order": 2,
+    "error_order": 1,
+    "error_cov_type": "diagonal",
+    "fit_success": true,
+    "converged": true,
+    "aic": -57133.34887137992,
+    "bic": -57040.61688889281,
+    "llf": 28580.67443568996,
+    "pass_ljung_box": false,
+    "pass_jarque_bera": false,
+    "pass_arch": false,
+    "diagnostics_passed_count": 1,
+    "overall_pass": false,
+    "used_columns": [
+      "VIX",
+      "WTI",
+      "GOLD",
+      "DXY"
+    ],
+    "fit_error": null
+  },
+  "best_model_selection_reason": "No model passed all diagnostics; selected the model with the highest diagnostics count, then lowest AIC, then simplicity.",
+  "diagnostics": {
+    "pass_ljung_box": false,
+    "pass_jarque_bera": false,
+    "pass_arch": false,
+    "detail": {
+      "VIX": {
+        "ljung_box_pvalue": 3.1926554721634877e-06,
+        "jarque_bera_pvalue": 0.0,
+        "arch_pvalue": 1.8015221905723279e-53,
+        "pass_ljung_box": false,
+        "pass_jarque_bera": false,
+        "pass_arch": false
+      },
+      "WTI": {
+        "ljung_box_pvalue": 1.0461881374381388e-28,
+        "jarque_bera_pvalue": 0.0,
+        "arch_pvalue": 2.2627146086997558e-86,
+        "pass_ljung_box": false,
+        "pass_jarque_bera": false,
+        "pass_arch": false
+      },
+      "GOLD": {
+        "ljung_box_pvalue": 0.8152391887367068,
+        "jarque_bera_pvalue": 0.0,
+        "arch_pvalue": 6.4823823395932725e-75,
+        "pass_ljung_box": true,
+        "pass_jarque_bera": false,
+        "pass_arch": false
+      },
+      "DXY": {
+        "ljung_box_pvalue": 0.10964705804497199,
+        "jarque_bera_pvalue": 0.0,
+        "arch_pvalue": 5.284772788313674e-83,
+        "pass_ljung_box": true,
+        "pass_jarque_bera": false,
+        "pass_arch": false
+      }
+    }
+  },
+  "artifacts": {
+    "latent_factor": "output/factor_latente_final.csv",
+    "panel_original": "output/panel_original_niveles.csv",
+    "panel_transformed": "output/panel_transformado_usado.csv",
+    "grid": "output/dfm_diagnostics_grid.csv",
+    "summary": "output/dfm_summary.txt",
+    "metadata": "output/dfm_run_metadata.json",
+    "best_model_pickle": "output/dfm_best_model.pkl",
+    "log": "output/dfm_run.log",
+    "crash": "output/crash_report.json"
+  },
+  "last_attempted_model": {
+    "k_factors": 2,
+    "factor_order": 2,
+    "error_order": 1,
+    "error_cov_type": "unstructured"
+  }
+}

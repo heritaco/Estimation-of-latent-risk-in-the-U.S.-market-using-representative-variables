@@ -14,12 +14,14 @@ dependencies = [
   "numpy>=1.22",
   "pandas>=1.5",
   "matplotlib>=3.6",
+  "scipy>=1.10",
+  "statsmodels>=0.14.0",
 ]
 
 [project.optional-dependencies]
 yahoo = ["yfinance>=0.2.20"]
 
-arima = [\"statsmodels>=0.14.0\"]
+arima = ["statsmodels>=0.14.0"]
 [project.scripts]
 guerrero-trend = "guerrero_trend.cli:main"
 

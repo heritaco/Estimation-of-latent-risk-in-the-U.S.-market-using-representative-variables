@@ -76,27 +76,56 @@ def from_yahoo(
     end: Optional[str] = None,
     use_log: bool = True,
 ) -> Tuple[np.ndarray, SeriesMeta]:
+    series, meta = from_yahoo_series(ticker=ticker, start=start, end=end, use_log=use_log)
+    return series.to_numpy(dtype=float).ravel(), meta
+
+
+def from_yahoo_series(
+    ticker: str,
+    start: str = "2010-01-01",
+    end: Optional[str] = None,
+    use_log: bool = False,
+) -> Tuple["pd.Series", SeriesMeta]:
     try:
         import yfinance as yf
     except Exception as e:
         raise ImportError("Install optional extra: `pip install guerrero-trend[yahoo]`.") from e
 
-    df = yf.download(ticker, start=start, end=end)
+    df = yf.download(
+        ticker,
+        start=start,
+        end=end,
+        progress=False,
+        threads=False,
+        auto_adjust=False,
+    )
     if df.empty:
         raise RuntimeError("No data downloaded (check ticker/start/end).")
 
-    col = None
-    for c in ["Adj Close", "AdjClose", "Close", "close"]:
-        if c in df.columns:
-            col = c
-            break
-    if col is None:
-        raise ValueError("No price column found (Adj Close/Close).")
+    if isinstance(df.columns, pd.MultiIndex):
+        col = None
+        for c in ["Adj Close", "AdjClose", "Close", "close"]:
+            if c in df.columns.get_level_values(0):
+                col = c
+                break
+        if col is None:
+            raise ValueError("No price column found (Adj Close/Close).")
+        s = df[col]
+        if isinstance(s, pd.DataFrame):
+            s = s.iloc[:, 0]
+    else:
+        col = None
+        for c in ["Adj Close", "AdjClose", "Close", "close"]:
+            if c in df.columns:
+                col = c
+                break
+        if col is None:
+            raise ValueError("No price column found (Adj Close/Close).")
+        s = df[col]
 
-    s = df[col].dropna()
-    Z = s.to_numpy(dtype=float).ravel()
+    s = s.dropna().astype(float)
     if use_log:
-        Z = np.log(Z)
+        s = np.log(s)
 
     meta = SeriesMeta(
         name=ticker,
@@ -104,4 +133,4 @@ def from_yahoo(
         end=str(s.index[-1].date()),
         use_log=use_log,
     )
-    return Z, meta
+    return s, meta

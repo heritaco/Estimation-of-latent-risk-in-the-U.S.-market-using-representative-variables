@@ -1,0 +1,320 @@
+2026-03-15T04:53:00.231670Z | [start] robust DFM latent-series pipeline starting
+2026-03-15T04:53:00.232669Z | [start] root directory: C:\Users\herie\OneDrive - Fundacion Universidad de las Americas Puebla\Universidad\10 Semestre Primavera\Estimation of latent risk in the U.S. market using representative variables
+2026-03-15T04:53:00.232669Z | [start] data directory: C:\Users\herie\OneDrive - Fundacion Universidad de las Americas Puebla\Universidad\10 Semestre Primavera\Estimation of latent risk in the U.S. market using representative variables\data
+2026-03-15T04:53:00.232669Z | [start] output directory: C:\Users\herie\OneDrive - Fundacion Universidad de las Americas Puebla\Universidad\10 Semestre Primavera\Estimation of latent risk in the U.S. market using representative variables\output
+2026-03-15T04:53:00.232669Z | [data] loading series 1/7: VIX from yahoo:^VIX
+2026-03-15T04:53:00.232669Z | [yahoo] downloading ^VIX via trend.data.from_yahoo_series (attempt 1/4)
+2026-03-15T04:53:04.893008Z | [cache] saved VIX to data/yahoo___VIX.csv
+2026-03-15T04:53:04.893008Z | [data] snapshot for VIX: {
+  "n_obs": 6588,
+  "start": "2000-01-03",
+  "end": "2026-03-13",
+  "min": 9.140000343322754,
+  "max": 82.69000244140625,
+  "last": 27.190000534057617
+}
+2026-03-15T04:53:04.894512Z | [data] loading series 2/7: MOVE from yahoo:^MOVE
+2026-03-15T04:53:04.894512Z | [yahoo] downloading ^MOVE via trend.data.from_yahoo_series (attempt 1/4)
+2026-03-15T04:53:05.619404Z | [cache] saved MOVE to data/yahoo___MOVE.csv
+2026-03-15T04:53:05.619404Z | [data] snapshot for MOVE: {
+  "n_obs": 5768,
+  "start": "2002-11-12",
+  "end": "2026-03-13",
+  "min": 36.619998931884766,
+  "max": 264.6000061035156,
+  "last": 91.1697998046875
+}
+2026-03-15T04:53:05.619404Z | [data] loading series 3/7: WTI from yahoo:CL=F
+2026-03-15T04:53:05.620382Z | [yahoo] downloading CL=F via trend.data.from_yahoo_series (attempt 1/4)
+2026-03-15T04:53:07.067395Z | [cache] saved WTI to data/yahoo__CL_F.csv
+2026-03-15T04:53:07.068374Z | [data] snapshot for WTI: {
+  "n_obs": 6416,
+  "start": "2000-08-23",
+  "end": "2026-03-13",
+  "min": -37.630001068115234,
+  "max": 145.2899932861328,
+  "last": 98.70999908447266
+}
+2026-03-15T04:53:07.068374Z | [data] loading series 4/7: GOLD from yahoo:GLD
+2026-03-15T04:53:07.068374Z | [yahoo] downloading GLD via trend.data.from_yahoo_series (attempt 1/4)
+2026-03-15T04:53:07.789225Z | [cache] saved GOLD to data/yahoo__GLD.csv
+2026-03-15T04:53:07.790206Z | [data] snapshot for GOLD: {
+  "n_obs": 5362,
+  "start": "2004-11-18",
+  "end": "2026-03-13",
+  "min": 41.2599983215332,
+  "max": 495.8999938964844,
+  "last": 460.8399963378906
+}
+2026-03-15T04:53:07.793208Z | [data] loading series 5/7: DXY from yahoo:DX-Y.NYB
+2026-03-15T04:53:07.794208Z | [yahoo] downloading DX-Y.NYB via trend.data.from_yahoo_series (attempt 1/4)
+2026-03-15T04:53:08.597863Z | [cache] saved DXY to data/yahoo__DX-Y.NYB.csv
+2026-03-15T04:53:08.598799Z | [data] snapshot for DXY: {
+  "n_obs": 6617,
+  "start": "2000-01-03",
+  "end": "2026-03-13",
+  "min": 71.33000183105469,
+  "max": 120.9000015258789,
+  "last": 100.36000061035156
+}
+2026-03-15T04:53:08.598799Z | [data] loading series 6/7: IG_OAS from fred:BAMLC0A0CM
+2026-03-15T04:53:08.599793Z | [fred] downloading BAMLC0A0CM from fredgraph.csv
+2026-03-15T04:54:59.685768Z | [http] attempt 1/4 failed for https://fred.stlouisfed.org/graph/fredgraph.csv: HTTPSConnectionPool(host='fred.stlouisfed.org', port=443): Max retries exceeded with url: /graph/fredgraph.csv?id=BAMLC0A0CM&cosd=2000-01-01 (Caused by ReadTimeoutError("HTTPSConnectionPool(host='fred.stlouisfed.org', port=443): Read timed out. (read timeout=20)")). retrying in 2s
+2026-03-15T04:56:50.229124Z | [http] attempt 2/4 failed for https://fred.stlouisfed.org/graph/fredgraph.csv: HTTPSConnectionPool(host='fred.stlouisfed.org', port=443): Max retries exceeded with url: /graph/fredgraph.csv?id=BAMLC0A0CM&cosd=2000-01-01 (Caused by ProtocolError('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))). retrying in 4s
+2026-03-15T04:59:45.004776Z | [start] robust DFM latent-series pipeline starting
+2026-03-15T04:59:45.004776Z | [start] root directory: C:\Users\herie\OneDrive - Fundacion Universidad de las Americas Puebla\Universidad\10 Semestre Primavera\Estimation of latent risk in the U.S. market using representative variables
+2026-03-15T04:59:45.005781Z | [start] data directory: C:\Users\herie\OneDrive - Fundacion Universidad de las Americas Puebla\Universidad\10 Semestre Primavera\Estimation of latent risk in the U.S. market using representative variables\data
+2026-03-15T04:59:45.005781Z | [start] output directory: C:\Users\herie\OneDrive - Fundacion Universidad de las Americas Puebla\Universidad\10 Semestre Primavera\Estimation of latent risk in the U.S. market using representative variables\output
+2026-03-15T04:59:45.005781Z | [data] loading series 1/7: VIX from yahoo:^VIX
+2026-03-15T04:59:45.018409Z | [cache] using cached VIX from data/yahoo___VIX.csv with 6588 obs
+2026-03-15T04:59:45.019408Z | [data] snapshot for VIX: {
+  "n_obs": 6588,
+  "start": "2000-01-03",
+  "end": "2026-03-13",
+  "min": 9.140000343322754,
+  "max": 82.69000244140625,
+  "last": 27.190000534057617
+}
+2026-03-15T04:59:45.019408Z | [data] loading series 2/7: MOVE from yahoo:^MOVE
+2026-03-15T04:59:45.026804Z | [cache] using cached MOVE from data/yahoo___MOVE.csv with 5768 obs
+2026-03-15T04:59:45.027806Z | [data] snapshot for MOVE: {
+  "n_obs": 5768,
+  "start": "2002-11-12",
+  "end": "2026-03-13",
+  "min": 36.619998931884766,
+  "max": 264.6000061035156,
+  "last": 91.1697998046875
+}
+2026-03-15T04:59:45.028804Z | [data] loading series 3/7: WTI from yahoo:CL=F
+2026-03-15T04:59:45.036324Z | [cache] using cached WTI from data/yahoo__CL_F.csv with 6416 obs
+2026-03-15T04:59:45.037324Z | [data] snapshot for WTI: {
+  "n_obs": 6416,
+  "start": "2000-08-23",
+  "end": "2026-03-13",
+  "min": -37.630001068115234,
+  "max": 145.2899932861328,
+  "last": 98.70999908447266
+}
+2026-03-15T04:59:45.037324Z | [data] loading series 4/7: GOLD from yahoo:GLD
+2026-03-15T04:59:45.043324Z | [cache] using cached GOLD from data/yahoo__GLD.csv with 5362 obs
+2026-03-15T04:59:45.044324Z | [data] snapshot for GOLD: {
+  "n_obs": 5362,
+  "start": "2004-11-18",
+  "end": "2026-03-13",
+  "min": 41.2599983215332,
+  "max": 495.8999938964844,
+  "last": 460.8399963378906
+}
+2026-03-15T04:59:45.044324Z | [data] loading series 5/7: DXY from yahoo:DX-Y.NYB
+2026-03-15T04:59:45.051413Z | [cache] using cached DXY from data/yahoo__DX-Y.NYB.csv with 6617 obs
+2026-03-15T04:59:45.052414Z | [data] snapshot for DXY: {
+  "n_obs": 6617,
+  "start": "2000-01-03",
+  "end": "2026-03-13",
+  "min": 71.33000183105469,
+  "max": 120.9000015258789,
+  "last": 100.36000061035156
+}
+2026-03-15T04:59:45.052414Z | [data] loading series 6/7: IG_OAS from fred:BAMLC0A0CM
+2026-03-15T04:59:45.053418Z | [fred] downloading BAMLC0A0CM from fredgraph.csv
+2026-03-15T05:01:33.700751Z | [http] attempt 1/4 failed for https://fred.stlouisfed.org/graph/fredgraph.csv: HTTPSConnectionPool(host='fred.stlouisfed.org', port=443): Max retries exceeded with url: /graph/fredgraph.csv?id=BAMLC0A0CM&cosd=2000-01-01 (Caused by ProtocolError('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))). retrying in 2s
+2026-03-15T05:03:23.377553Z | [http] attempt 2/4 failed for https://fred.stlouisfed.org/graph/fredgraph.csv: HTTPSConnectionPool(host='fred.stlouisfed.org', port=443): Max retries exceeded with url: /graph/fredgraph.csv?id=BAMLC0A0CM&cosd=2000-01-01 (Caused by ReadTimeoutError("HTTPSConnectionPool(host='fred.stlouisfed.org', port=443): Read timed out. (read timeout=20)")). retrying in 4s
+2026-03-15T05:05:14.586798Z | [start] robust DFM latent-series pipeline starting
+2026-03-15T05:05:14.587797Z | [start] root directory: C:\Users\herie\OneDrive - Fundacion Universidad de las Americas Puebla\Universidad\10 Semestre Primavera\Estimation of latent risk in the U.S. market using representative variables
+2026-03-15T05:05:14.587797Z | [start] data directory: C:\Users\herie\OneDrive - Fundacion Universidad de las Americas Puebla\Universidad\10 Semestre Primavera\Estimation of latent risk in the U.S. market using representative variables\data
+2026-03-15T05:05:14.587797Z | [start] output directory: C:\Users\herie\OneDrive - Fundacion Universidad de las Americas Puebla\Universidad\10 Semestre Primavera\Estimation of latent risk in the U.S. market using representative variables\output
+2026-03-15T05:05:14.587797Z | [data] loading series 1/4: VIX from yahoo:^VIX
+2026-03-15T05:05:14.597659Z | [cache] using cached VIX from data/yahoo___VIX.csv with 6588 obs
+2026-03-15T05:05:14.598659Z | [data] snapshot for VIX: {
+  "n_obs": 6588,
+  "start": "2000-01-03",
+  "end": "2026-03-13",
+  "min": 9.140000343322754,
+  "max": 82.69000244140625,
+  "last": 27.190000534057617
+}
+2026-03-15T05:05:14.598659Z | [data] loading series 2/4: WTI from yahoo:CL=F
+2026-03-15T05:05:14.606306Z | [cache] using cached WTI from data/yahoo__CL_F.csv with 6416 obs
+2026-03-15T05:05:14.607307Z | [data] snapshot for WTI: {
+  "n_obs": 6416,
+  "start": "2000-08-23",
+  "end": "2026-03-13",
+  "min": -37.630001068115234,
+  "max": 145.2899932861328,
+  "last": 98.70999908447266
+}
+2026-03-15T05:05:14.607307Z | [data] loading series 3/4: GOLD from yahoo:GLD
+2026-03-15T05:05:14.615815Z | [cache] using cached GOLD from data/yahoo__GLD.csv with 5362 obs
+2026-03-15T05:05:14.617818Z | [data] snapshot for GOLD: {
+  "n_obs": 5362,
+  "start": "2004-11-18",
+  "end": "2026-03-13",
+  "min": 41.2599983215332,
+  "max": 495.8999938964844,
+  "last": 460.8399963378906
+}
+2026-03-15T05:05:14.617818Z | [data] loading series 4/4: DXY from yahoo:DX-Y.NYB
+2026-03-15T05:05:14.624325Z | [cache] using cached DXY from data/yahoo__DX-Y.NYB.csv with 6617 obs
+2026-03-15T05:05:14.624325Z | [data] snapshot for DXY: {
+  "n_obs": 6617,
+  "start": "2000-01-03",
+  "end": "2026-03-13",
+  "min": 71.33000183105469,
+  "max": 120.9000015258789,
+  "last": 100.36000061035156
+}
+2026-03-15T05:05:14.686544Z | [panel] checks: {
+  "pre_alignment": {
+    "shape": [
+      6622,
+      4
+    ],
+    "start": "2000-01-03",
+    "end": "2026-03-13",
+    "duplicate_dates": 0,
+    "missing_counts": {
+      "VIX": 34,
+      "WTI": 206,
+      "GOLD": 1260,
+      "DXY": 5
+    },
+    "nonpositive_counts": {
+      "VIX": 0,
+      "WTI": 1,
+      "GOLD": 0,
+      "DXY": 0
+    },
+    "constant_columns": []
+  },
+  "post_alignment_before_drop": {
+    "shape": [
+      6835,
+      4
+    ],
+    "start": "2000-01-03",
+    "end": "2026-03-13",
+    "duplicate_dates": 0,
+    "missing_counts": {
+      "VIX": 0,
+      "WTI": 167,
+      "GOLD": 1273,
+      "DXY": 0
+    },
+    "nonpositive_counts": {
+      "VIX": 0,
+      "WTI": 1,
+      "GOLD": 0,
+      "DXY": 0
+    },
+    "constant_columns": []
+  },
+  "final_panel": {
+    "shape": [
+      5562,
+      4
+    ],
+    "start": "2004-11-18",
+    "end": "2026-03-13",
+    "duplicate_dates": 0,
+    "missing_counts": {
+      "VIX": 0,
+      "WTI": 0,
+      "GOLD": 0,
+      "DXY": 0
+    },
+    "nonpositive_counts": {
+      "VIX": 0,
+      "WTI": 1,
+      "GOLD": 0,
+      "DXY": 0
+    },
+    "constant_columns": []
+  }
+}
+2026-03-15T05:05:14.706086Z | [output] wrote output/panel_original_niveles.csv
+2026-03-15T05:05:14.709087Z | [transform] WTI: replaced 1 non-positive values with floor 5.005000114
+2026-03-15T05:05:14.712086Z | [transform] checks: {
+  "shape": [
+    5562,
+    4
+  ],
+  "nan_total": 0,
+  "inf_total": 0,
+  "zero_var_columns": [],
+  "mean_abs_max": 2.6163098217128463e-15,
+  "std_dev_from_1_max": 2.220446049250313e-16
+}
+2026-03-15T05:05:14.712086Z | [transform] flooring actions: {
+  "actions": [
+    {
+      "series": "WTI",
+      "replaced_count": 1,
+      "floor_value": 5.005000114440918
+    }
+  ]
+}
+2026-03-15T05:05:14.732122Z | [output] wrote output/panel_transformado_usado.csv
+2026-03-15T05:05:14.732122Z | [grid] model 1/16: {'k_factors': 1, 'factor_order': 1, 'error_order': 0, 'error_cov_type': 'diagonal'}
+2026-03-15T05:05:14.733126Z | [model] fitting k=1 factor_order=1 error_order=0 error_cov_type=diagonal
+2026-03-15T05:05:22.183002Z | [grid] completed {'k_factors': 1, 'factor_order': 1, 'error_order': 0, 'error_cov_type': 'diagonal'} | converged=True lb=False jb=False arch=False aic=45259.487
+2026-03-15T05:05:22.183002Z | [grid] model 2/16: {'k_factors': 1, 'factor_order': 1, 'error_order': 0, 'error_cov_type': 'unstructured'}
+2026-03-15T05:05:22.184506Z | [model] fitting k=1 factor_order=1 error_order=0 error_cov_type=unstructured
+2026-03-15T05:05:51.815409Z | [grid] completed {'k_factors': 1, 'factor_order': 1, 'error_order': 0, 'error_cov_type': 'unstructured'} | converged=True lb=False jb=False arch=False aic=15194.055
+2026-03-15T05:05:51.815409Z | [grid] model 3/16: {'k_factors': 1, 'factor_order': 1, 'error_order': 1, 'error_cov_type': 'diagonal'}
+2026-03-15T05:05:51.815409Z | [model] fitting k=1 factor_order=1 error_order=1 error_cov_type=diagonal
+2026-03-15T05:06:44.692304Z | [grid] completed {'k_factors': 1, 'factor_order': 1, 'error_order': 1, 'error_cov_type': 'diagonal'} | converged=True lb=False jb=False arch=False aic=-57133.168
+2026-03-15T05:06:44.692304Z | [grid] model 4/16: {'k_factors': 1, 'factor_order': 1, 'error_order': 1, 'error_cov_type': 'unstructured'}
+2026-03-15T05:06:44.693305Z | [model] fitting k=1 factor_order=1 error_order=1 error_cov_type=unstructured
+2026-03-15T05:06:45.104620Z | [grid] failed {'k_factors': 1, 'factor_order': 1, 'error_order': 1, 'error_cov_type': 'unstructured'}: could not broadcast input array from shape (4,) into shape (10,)
+2026-03-15T05:06:45.106112Z | [grid] model 5/16: {'k_factors': 1, 'factor_order': 2, 'error_order': 0, 'error_cov_type': 'diagonal'}
+2026-03-15T05:06:45.107111Z | [model] fitting k=1 factor_order=2 error_order=0 error_cov_type=diagonal
+2026-03-15T05:07:02.456735Z | [grid] completed {'k_factors': 1, 'factor_order': 2, 'error_order': 0, 'error_cov_type': 'diagonal'} | converged=True lb=False jb=False arch=False aic=36640.207
+2026-03-15T05:07:02.457736Z | [grid] model 6/16: {'k_factors': 1, 'factor_order': 2, 'error_order': 0, 'error_cov_type': 'unstructured'}
+2026-03-15T05:07:02.457736Z | [model] fitting k=1 factor_order=2 error_order=0 error_cov_type=unstructured
+2026-03-15T05:07:52.119875Z | [grid] completed {'k_factors': 1, 'factor_order': 2, 'error_order': 0, 'error_cov_type': 'unstructured'} | converged=True lb=False jb=False arch=False aic=15191.315
+2026-03-15T05:07:52.120878Z | [grid] model 7/16: {'k_factors': 1, 'factor_order': 2, 'error_order': 1, 'error_cov_type': 'diagonal'}
+2026-03-15T05:07:52.121866Z | [model] fitting k=1 factor_order=2 error_order=1 error_cov_type=diagonal
+2026-03-15T05:08:53.475094Z | [grid] completed {'k_factors': 1, 'factor_order': 2, 'error_order': 1, 'error_cov_type': 'diagonal'} | converged=True lb=False jb=False arch=False aic=-57133.349
+2026-03-15T05:08:53.477845Z | [grid] model 8/16: {'k_factors': 1, 'factor_order': 2, 'error_order': 1, 'error_cov_type': 'unstructured'}
+2026-03-15T05:08:53.477845Z | [model] fitting k=1 factor_order=2 error_order=1 error_cov_type=unstructured
+2026-03-15T05:08:53.913204Z | [grid] failed {'k_factors': 1, 'factor_order': 2, 'error_order': 1, 'error_cov_type': 'unstructured'}: could not broadcast input array from shape (4,) into shape (10,)
+2026-03-15T05:08:53.913204Z | [grid] model 9/16: {'k_factors': 2, 'factor_order': 1, 'error_order': 0, 'error_cov_type': 'diagonal'}
+2026-03-15T05:08:53.914708Z | [model] fitting k=2 factor_order=1 error_order=0 error_cov_type=diagonal
+2026-03-15T05:10:35.047512Z | [grid] completed {'k_factors': 2, 'factor_order': 1, 'error_order': 0, 'error_cov_type': 'diagonal'} | converged=False lb=False jb=False arch=False aic=-16428.358
+2026-03-15T05:10:35.056020Z | [grid] model 10/16: {'k_factors': 2, 'factor_order': 1, 'error_order': 0, 'error_cov_type': 'unstructured'}
+2026-03-15T05:10:35.057047Z | [model] fitting k=2 factor_order=1 error_order=0 error_cov_type=unstructured
+2026-03-15T05:12:30.484451Z | [grid] completed {'k_factors': 2, 'factor_order': 1, 'error_order': 0, 'error_cov_type': 'unstructured'} | converged=False lb=False jb=False arch=False aic=33591.737
+2026-03-15T05:12:30.486972Z | [grid] model 11/16: {'k_factors': 2, 'factor_order': 1, 'error_order': 1, 'error_cov_type': 'diagonal'}
+2026-03-15T05:12:30.487986Z | [model] fitting k=2 factor_order=1 error_order=1 error_cov_type=diagonal
+2026-03-15T05:15:59.792922Z | [grid] completed {'k_factors': 2, 'factor_order': 1, 'error_order': 1, 'error_cov_type': 'diagonal'} | converged=False lb=False jb=False arch=False aic=-32569.451
+2026-03-15T05:15:59.795583Z | [grid] model 12/16: {'k_factors': 2, 'factor_order': 1, 'error_order': 1, 'error_cov_type': 'unstructured'}
+2026-03-15T05:15:59.796580Z | [model] fitting k=2 factor_order=1 error_order=1 error_cov_type=unstructured
+2026-03-15T05:16:00.587511Z | [grid] failed {'k_factors': 2, 'factor_order': 1, 'error_order': 1, 'error_cov_type': 'unstructured'}: could not broadcast input array from shape (4,) into shape (10,)
+2026-03-15T05:16:00.588496Z | [grid] model 13/16: {'k_factors': 2, 'factor_order': 2, 'error_order': 0, 'error_cov_type': 'diagonal'}
+2026-03-15T05:16:00.589497Z | [model] fitting k=2 factor_order=2 error_order=0 error_cov_type=diagonal
+2026-03-15T05:18:59.660725Z | [grid] completed {'k_factors': 2, 'factor_order': 2, 'error_order': 0, 'error_cov_type': 'diagonal'} | converged=False lb=False jb=False arch=False aic=18505.050
+2026-03-15T05:18:59.661741Z | [grid] model 14/16: {'k_factors': 2, 'factor_order': 2, 'error_order': 0, 'error_cov_type': 'unstructured'}
+2026-03-15T05:18:59.662727Z | [model] fitting k=2 factor_order=2 error_order=0 error_cov_type=unstructured
+2026-03-15T05:21:35.377519Z | [grid] completed {'k_factors': 2, 'factor_order': 2, 'error_order': 0, 'error_cov_type': 'unstructured'} | converged=False lb=False jb=False arch=False aic=33707.930
+2026-03-15T05:21:35.377519Z | [grid] model 15/16: {'k_factors': 2, 'factor_order': 2, 'error_order': 1, 'error_cov_type': 'diagonal'}
+2026-03-15T05:21:35.378518Z | [model] fitting k=2 factor_order=2 error_order=1 error_cov_type=diagonal
+2026-03-15T05:26:54.765222Z | [grid] completed {'k_factors': 2, 'factor_order': 2, 'error_order': 1, 'error_cov_type': 'diagonal'} | converged=False lb=False jb=False arch=False aic=-4708.052
+2026-03-15T05:26:54.766328Z | [grid] model 16/16: {'k_factors': 2, 'factor_order': 2, 'error_order': 1, 'error_cov_type': 'unstructured'}
+2026-03-15T05:26:54.767338Z | [model] fitting k=2 factor_order=2 error_order=1 error_cov_type=unstructured
+2026-03-15T05:26:55.488878Z | [grid] failed {'k_factors': 2, 'factor_order': 2, 'error_order': 1, 'error_cov_type': 'unstructured'}: could not broadcast input array from shape (4,) into shape (10,)
+2026-03-15T05:26:55.528472Z | [output] wrote output/dfm_diagnostics_grid.csv
+2026-03-15T05:26:55.530452Z | [factor] correlation with log(VIX) before orientation: -0.368050
+2026-03-15T05:26:55.531453Z | [factor] latent factor sign flipped to align positively with log(VIX)
+2026-03-15T05:26:55.546561Z | [factor] snapshot: {
+  "n_obs": 5562,
+  "start": "2004-11-18",
+  "end": "2026-03-13",
+  "min": -33.8018073818586,
+  "max": 33.39608816527886,
+  "last": -13.429122718563827
+}
+2026-03-15T05:26:55.546561Z | [output] wrote output/factor_latente_final.csv
+2026-03-15T05:26:55.614928Z | [output] wrote output/dfm_best_model.pkl
+2026-03-15T05:26:56.083624Z | [output] wrote output/dfm_summary.txt
+2026-03-15T05:26:56.090233Z | [output] wrote output/dfm_run_metadata.json
+2026-03-15T05:26:56.093149Z | [done] latent factor pipeline completed successfully
