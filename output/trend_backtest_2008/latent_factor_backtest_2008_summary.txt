@@ -1,36 +1,54 @@
-Latent factor polynomial trend backtest
-======================================
+Latent factor train / validation / test backtest
+================================================
 
 Training start: 2004-11-18
 Training end: 2007-12-31
-Backtest start: 2008-01-01
-Backtest end: 2008-12-31
+Validation start: 2008-01-01
+Validation end: 2008-05-30
+Test start: 2008-06-02
+Test end: 2008-12-31
 Training observations: 813
-Backtest observations: 262
+Validation observations: 109
+Test observations: 153
 
 Difference order d: 2
-Selected smoothness s: 0.994838
-Validation MSE at selected s: 6.789439
-Estimated residual volatility: 2.495150
-Estimated sigma^2 from full training fit: 7.048257
+Selected smoothness s (global best): 0.999000
+Validation MSE at selected s: 3.693990
+First local minimum s: 0.743729
+Validation MSE at first local minimum: 3.524899
+Validation RMSE using the training polynomial forecast: 1.921976
+Test RMSE using the same training polynomial forecast: 30.103330
+Train sigma^2: 10.595572
+Training change volatility for sqrt(h) bands: 0.812073
+Training level residual std: 3.195572
+Confidence intervals are drawn only on the test window and restart at h=1 on the first test date.
 
-Out-of-band observations by confidence level:
-90.0%: 0 dates (0.00% of the backtest window)
-95.0%: 0 dates (0.00% of the backtest window)
-97.5%: 0 dates (0.00% of the backtest window)
-99.0%: 0 dates (0.00% of the backtest window)
-99.9%: 0 dates (0.00% of the backtest window)
+Test out-of-band observations by confidence level:
+90.0%: 110 dates (71.90% of the test window)
+95.0%: 107 dates (69.93% of the test window)
+97.5%: 97 dates (63.40% of the test window)
+99.0%: 81 dates (52.94% of the test window)
+99.9%: 68 dates (44.44% of the test window)
 
-Largest absolute forecast errors:
+Largest validation forecast errors:
+             actual  forecast  forecast_error  step
+Date                                               
+2008-03-18 -33.8018  -29.2033         -4.5985    56
+2008-03-13 -33.6320  -29.1387         -4.4933    53
+2008-03-14 -33.4861  -29.1603         -4.3258    54
+2008-03-17 -33.3007  -29.1818         -4.1189    55
+2008-03-12 -32.8633  -29.1172         -3.7461    52
+
+Largest test forecast errors:
             actual  forecast  forecast_error  step
 Date                                              
-2008-12-05 20.7202  -39.0772         59.7974   244
-2008-11-20 20.7453  -38.5311         59.2764   233
-2008-12-04 19.2612  -39.0273         58.2885   243
-2008-12-03 18.8323  -38.9775         57.8099   242
-2008-12-09 18.5008  -39.1770         57.6778   246
-2008-11-19 19.1888  -38.4817         57.6705   232
-2008-12-01 18.6059  -38.8780         57.4840   240
-2008-11-21 18.6924  -38.5806         57.2729   234
-2008-12-02 18.2018  -38.9278         57.1296   241
-2008-12-08 17.7858  -39.1271         56.9129   245
+2008-12-05 20.7202  -32.5851         53.3053   135
+2008-11-20 20.7453  -32.4231         53.1684   124
+2008-12-04 19.2612  -32.5706         51.8317   134
+2008-11-19 19.1888  -32.4082         51.5970   123
+2008-12-03 18.8323  -32.5560         51.3883   133
+2008-12-01 18.6059  -32.5267         51.1327   131
+2008-11-21 18.6924  -32.4381         51.1304   125
+2008-12-09 18.5008  -32.6141         51.1148   137
+2008-11-12 18.4860  -32.3329         50.8189   118
+2008-11-18 18.3784  -32.3932         50.7716   122

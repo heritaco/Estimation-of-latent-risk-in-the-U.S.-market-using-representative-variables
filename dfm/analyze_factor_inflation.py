@@ -9,6 +9,7 @@ import numpy as np
 import pandas as pd
 from statsmodels.tsa.stattools import adfuller, grangercausalitytests
 
+from plot_style import FIGURE_SIZE, PALETTE_2, PALETTE_3, PALETTE_6, PALETTE_7, SCATTER_FIGURE_SIZE, style_axis, style_figure, style_grid, style_legend, style_secondary_axis, style_text_box
 
 ROOT_DIR = Path(__file__).resolve().parents[1]
 DATA_DIR = ROOT_DIR / "data"
@@ -279,71 +280,74 @@ def save_figure(path: Path) -> None:
 
 
 def plot_timeseries(frame: pd.DataFrame) -> None:
-    fig, ax1 = plt.subplots(figsize=(14, 6))
+    fig, ax1 = plt.subplots(figsize=FIGURE_SIZE)
     ax2 = ax1.twinx()
+    style_figure(fig)
+    style_axis(ax1, time_axis=True)
+    style_secondary_axis(ax2)
 
     ax1.plot(
         frame.index,
         frame["latent_factor_period_mean"],
-        color="#1d4ed8",
+        color=PALETTE_3,
         linewidth=1.8,
-        label="Latent factor (period mean)",
+        label="Factor latente (promedio del periodo)",
     )
     ax2.plot(
         frame.index,
         frame["inflation_rate_pct"],
-        color="#b91c1c",
+        color=PALETTE_7,
         linewidth=1.8,
-        label="Inflation",
+        label="Inflación",
     )
 
-    ax1.set_title("Latent factor vs U.S. inflation")
-    ax1.set_ylabel("Latent factor")
-    ax2.set_ylabel("Inflation (%)")
-    ax1.grid(alpha=0.25)
+    ax1.set_title("Factor latente vs inflación de EE. UU.")
+    ax1.set_xlabel("Fecha")
+    ax1.set_ylabel("Factor latente")
+    ax2.set_ylabel("Inflación (%)")
+    style_grid(ax1)
 
     lines = ax1.get_lines() + ax2.get_lines()
     labels = [line.get_label() for line in lines]
-    ax1.legend(lines, labels, loc="upper left")
+    style_legend(ax1, handles=lines, labels=labels)
     save_figure(ANALYSIS_DIR / "factor_vs_inflation_timeseries.png")
 
 
 def plot_scatter(frame: pd.DataFrame, corr_stats: Dict[str, float]) -> None:
-    fig, ax = plt.subplots(figsize=(7, 6))
+    fig, ax = plt.subplots(figsize=SCATTER_FIGURE_SIZE)
+    style_figure(fig)
+    style_axis(ax)
     ax.scatter(
         frame["latent_factor_period_mean"],
         frame["inflation_rate_pct"],
         alpha=0.65,
-        color="#0f766e",
+        color=PALETTE_2,
         edgecolor="none",
     )
-    ax.set_title("Latent factor vs inflation")
-    ax.set_xlabel("Latent factor (period mean)")
-    ax.set_ylabel("Inflation (%)")
-    ax.grid(alpha=0.25)
-    ax.text(
-        0.03,
-        0.97,
+    ax.set_title("Factor latente vs inflación")
+    ax.set_xlabel("Factor latente (promedio del periodo)")
+    ax.set_ylabel("Inflación (%)")
+    style_grid(ax)
+    style_text_box(
+        ax,
         (
             f"Pearson: {corr_stats['pearson_contemporaneous']:.4f}\n"
             f"Spearman: {corr_stats['spearman_contemporaneous']:.4f}"
         ),
-        transform=ax.transAxes,
-        va="top",
-        ha="left",
-        bbox={"facecolor": "white", "alpha": 0.85, "edgecolor": "#cccccc"},
     )
     save_figure(ANALYSIS_DIR / "factor_vs_inflation_scatter.png")
 
 
 def plot_cross_correlation(cross_corr: pd.DataFrame) -> None:
-    fig, ax = plt.subplots(figsize=(12, 5))
-    ax.bar(cross_corr["lag_periods"], cross_corr["correlation"], color="#7c3aed", alpha=0.85)
+    fig, ax = plt.subplots(figsize=FIGURE_SIZE)
+    style_figure(fig)
+    style_axis(ax)
+    ax.bar(cross_corr["lag_periods"], cross_corr["correlation"], color=PALETTE_6, alpha=0.85)
     ax.axhline(0.0, color="black", linewidth=0.8)
-    ax.set_title("Cross-correlation: factor vs inflation")
-    ax.set_xlabel("Lag in periods")
-    ax.set_ylabel("Correlation")
-    ax.grid(axis="y", alpha=0.25)
+    ax.set_title("Correlación cruzada: factor vs inflación")
+    ax.set_xlabel("Rezago en períodos")
+    ax.set_ylabel("Correlación")
+    style_grid(ax, axis="y")
     save_figure(ANALYSIS_DIR / "factor_inflation_cross_correlation.png")
 
 

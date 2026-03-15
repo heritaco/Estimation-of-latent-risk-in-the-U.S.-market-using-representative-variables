@@ -10,6 +10,7 @@ import numpy as np
 import pandas as pd
 from statsmodels.tsa.stattools import adfuller, grangercausalitytests
 
+from plot_style import FIGURE_SIZE, PALETTE_2, PALETTE_3, PALETTE_6, PALETTE_7, SCATTER_FIGURE_SIZE, style_axis, style_figure, style_grid, style_legend, style_secondary_axis, style_text_box
 
 ROOT_DIR = Path(__file__).resolve().parents[1]
 DATA_DIR = ROOT_DIR / "data"
@@ -198,74 +199,77 @@ def save_figure(path: Path) -> None:
 
 
 def plot_change_vs_inflation(frame: pd.DataFrame) -> None:
-    fig, ax1 = plt.subplots(figsize=(14, 6))
+    fig, ax1 = plt.subplots(figsize=FIGURE_SIZE)
     ax2 = ax1.twinx()
+    style_figure(fig)
+    style_axis(ax1, time_axis=True)
+    style_secondary_axis(ax2)
 
     ax1.plot(
         frame.index,
         frame["factor_symmetric_pct_change"],
-        color="#1d4ed8",
+        color=PALETTE_3,
         linewidth=1.6,
-        label="Factor symmetric % change",
+        label="Cambio porcentual simétrico del factor",
     )
     ax2.plot(
         frame.index,
         frame["inflation_rate_pct"],
-        color="#b91c1c",
+        color=PALETTE_7,
         linewidth=1.6,
-        label="Monthly inflation rate",
+        label="Tasa mensual de inflación",
     )
 
     ax1.axhline(0.0, color="black", linewidth=0.8, alpha=0.6)
     ax2.axhline(0.0, color="black", linewidth=0.8, alpha=0.35)
-    ax1.set_title("Factor monthly change vs monthly inflation")
-    ax1.set_ylabel("Factor symmetric % change")
-    ax2.set_ylabel("Inflation rate (%)")
-    ax1.grid(alpha=0.25)
+    ax1.set_title("Cambio mensual del factor vs inflación mensual")
+    ax1.set_xlabel("Fecha")
+    ax1.set_ylabel("Cambio porcentual simétrico del factor")
+    ax2.set_ylabel("Tasa de inflación (%)")
+    style_grid(ax1)
 
     lines = ax1.get_lines() + ax2.get_lines()
     labels = [line.get_label() for line in lines]
-    ax1.legend(lines, labels, loc="upper left")
-    save_figure(ANALYSIS_DIR / "factor_change_vs_inflation_timeseries.png")
+    style_legend(ax1, handles=lines, labels=labels)
+    save_figure(ANALYSIS_DIR / "timeseries.png")
 
 
 def plot_scatter(frame: pd.DataFrame, corr_stats: Dict[str, float]) -> None:
-    fig, ax = plt.subplots(figsize=(7, 6))
+    fig, ax = plt.subplots(figsize=SCATTER_FIGURE_SIZE)
+    style_figure(fig)
+    style_axis(ax)
     ax.scatter(
         frame["factor_symmetric_pct_change"],
         frame["inflation_rate_pct"],
         alpha=0.65,
-        color="#0f766e",
+        color=PALETTE_2,
         edgecolor="none",
     )
-    ax.set_title("Factor monthly change vs inflation")
-    ax.set_xlabel("Factor symmetric % change")
-    ax.set_ylabel("Inflation rate (%)")
-    ax.grid(alpha=0.25)
-    ax.text(
-        0.03,
-        0.97,
+    ax.set_title("Cambio mensual del factor vs inflación")
+    ax.set_xlabel("Cambio porcentual simétrico del factor")
+    ax.set_ylabel("Tasa de inflación (%)")
+    style_grid(ax)
+    style_text_box(
+        ax,
         (
             f"Pearson: {corr_stats['pearson_contemporaneous']:.4f}\n"
             f"Spearman: {corr_stats['spearman_contemporaneous']:.4f}"
         ),
-        transform=ax.transAxes,
-        va="top",
-        ha="left",
-        bbox={"facecolor": "white", "alpha": 0.85, "edgecolor": "#cccccc"},
     )
-    save_figure(ANALYSIS_DIR / "factor_change_vs_inflation_scatter.png")
+    save_figure(ANALYSIS_DIR / "scatter.png")
 
 
 def plot_cross_correlation(cross_corr: pd.DataFrame) -> None:
-    fig, ax = plt.subplots(figsize=(12, 5))
-    ax.bar(cross_corr["lag_periods"], cross_corr["correlation"], color="#7c3aed", alpha=0.85)
+    fig, ax = plt.subplots(figsize=FIGURE_SIZE)
+    style_figure(fig)
+    style_axis(ax)
+    ax.bar(cross_corr["lag_periods"], cross_corr["correlation"], color=PALETTE_6, alpha=0.85)
     ax.axhline(0.0, color="black", linewidth=0.8)
-    ax.set_title("Cross-correlation: factor monthly change vs inflation")
-    ax.set_xlabel("Lag in months")
-    ax.set_ylabel("Correlation")
-    ax.grid(axis="y", alpha=0.25)
-    save_figure(ANALYSIS_DIR / "factor_change_inflation_cross_correlation.png")
+    ax.set_title("Correlación cruzada: cambio mensual del factor vs inflación")
+    ax.set_xlabel("Rezago en meses")
+    ax.set_ylabel("Correlación")
+    style_grid(ax, axis="y")
+    save_figure(ANALYSIS_DIR / "cross_correlation.png")
 
 
 def write_summary(
@@ -339,13 +343,13 @@ def main() -> None:
     log(f"[data] loaded monthly inflation with {len(inflation)} observations from {INFLATION_PATH.relative_to(ROOT_DIR).as_posix()}")
 
     merged = build_monthly_change_frame(factor_daily, inflation)
-    merged.to_csv(ANALYSIS_DIR / "factor_change_vs_inflation_merged_monthly.csv", index_label="Date")
-    log(f"[output] wrote {(ANALYSIS_DIR / 'factor_change_vs_inflation_merged_monthly.csv').relative_to(ROOT_DIR).as_posix()}")
+    merged.to_csv(ANALYSIS_DIR / "merged_monthly.csv", index_label="Date")
+    log(f"[output] wrote {(ANALYSIS_DIR / 'merged_monthly.csv').relative_to(ROOT_DIR).as_posix()}")
 
     corr_stats = compute_basic_correlations(merged)
     cross_corr = compute_cross_correlation_table(merged)
-    cross_corr.to_csv(ANALYSIS_DIR / "factor_change_vs_inflation_cross_correlation.csv", index=False)
-    log(f"[output] wrote {(ANALYSIS_DIR / 'factor_change_vs_inflation_cross_correlation.csv').relative_to(ROOT_DIR).as_posix()}")
+    cross_corr.to_csv(ANALYSIS_DIR / "cross_correlation.csv", index=False)
+    log(f"[output] wrote {(ANALYSIS_DIR / 'cross_correlation.csv').relative_to(ROOT_DIR).as_posix()}")
 
     adf_factor_change = adf_summary(merged["factor_symmetric_pct_change"])
     adf_inflation = adf_summary(merged["inflation_rate_pct"])
@@ -365,11 +369,11 @@ def main() -> None:
         "granger_factor_change_to_inflation": factor_to_inflation,
         "granger_inflation_to_factor_change": inflation_to_factor,
     }
-    write_json(stats_payload, ANALYSIS_DIR / "factor_change_vs_inflation_stats.json")
-    log(f"[output] wrote {(ANALYSIS_DIR / 'factor_change_vs_inflation_stats.json').relative_to(ROOT_DIR).as_posix()}")
+    write_json(stats_payload, ANALYSIS_DIR / "stats.json")
+    log(f"[output] wrote {(ANALYSIS_DIR / 'stats.json').relative_to(ROOT_DIR).as_posix()}")
 
     write_summary(
-        ANALYSIS_DIR / "factor_change_vs_inflation_summary.txt",
+        ANALYSIS_DIR / "summary.txt",
         merged,
         corr_stats,
         cross_corr,

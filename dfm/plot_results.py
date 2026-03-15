@@ -4,13 +4,20 @@ import json
 from pathlib import Path
 from typing import Dict
 
+import matplotlib.dates as mdates
 import matplotlib.pyplot as plt
 import pandas as pd
+from matplotlib.ticker import MaxNLocator
+from plot_style import PALETTE_2, PALETTE_3, PALETTE_5, PALETTE_7
+
+plt.rcParams["font.family"] = "EB Garamond"
+plt.rcParams["font.serif"] = ["EB Garamond", "serif"]
 
 
 ROOT_DIR = Path(__file__).resolve().parents[1]
 OUTPUT_DIR = ROOT_DIR / "output"
 PLOTS_DIR = OUTPUT_DIR / "plots"
+FIGURE_SIZE = (10, 4)
 
 
 def log(message: str) -> None:
@@ -40,33 +47,59 @@ def save_current_figure(path: Path) -> None:
     log(f"[plot] saved {path.relative_to(ROOT_DIR).as_posix()}")
 
 
+def apply_axis_style(ax, *, time_axis: bool = True) -> None:
+    ax.spines["top"].set_visible(False)
+    ax.spines["right"].set_visible(False)
+    ax.spines["left"].set_linewidth(1.2)
+    ax.spines["bottom"].set_linewidth(1.2)
+    ax.tick_params(
+        axis="both",
+        which="major",
+        direction="out",
+        length=6,
+        width=1,
+        colors="black",
+        labelbottom=True,
+        labelleft=True,
+    )
+    ax.yaxis.set_major_locator(MaxNLocator(nbins=6))
+
+    if time_axis:
+        locator = mdates.AutoDateLocator(minticks=5, maxticks=8)
+        ax.xaxis.set_major_locator(locator)
+        ax.xaxis.set_major_formatter(mdates.ConciseDateFormatter(locator))
+    else:
+        ax.xaxis.set_major_locator(MaxNLocator(nbins=5))
+
+
+def set_title_and_legend(ax, title: str, *, ncol: int = 1) -> None:
+    ax.set_title(title, pad=1)
+    handles, labels = ax.get_legend_handles_labels()
+    if handles:
+        ax.legend(
+            handles,
+            labels,
+            loc="upper center",
+            bbox_to_anchor=(0.5, 0.98),
+            ncol=ncol,
+            frameon=False,
+        )
+
+
 def plot_latent_factor(factor: pd.DataFrame) -> None:
     series = factor.iloc[:, 0].rename("latent_factor")
     rolling = series.rolling(60, min_periods=20).mean()
 
-    fig, ax = plt.subplots(figsize=(14, 5))
+    fig, ax = plt.subplots(figsize=FIGURE_SIZE)
     fig.patch.set_facecolor("#E0E1E5")
     ax.set_facecolor("#E0E1E5")
 
-    ax.spines["top"].set_visible(False)
-    ax.spines["right"].set_visible(False)
-
-    ax.tick_params(
-    axis="both",
-    which="major",
-    direction="out",
-    length=6,
-    width=1,
-    colors="black"
-)
-    ax.spines["left"].set_linewidth(1.2)
-    ax.spines["bottom"].set_linewidth(1.2)
-    ax.plot(series.index, series.values, color="#1f4e79", linewidth=1.0, alpha=0.75, label="Factor latente")
-    ax.plot(rolling.index, rolling.values, color="#c0392b", linewidth=2.0, label="Media movil 60 dias")
+    ax.plot(series.index, series.values, color=PALETTE_3, linewidth=1.0, alpha=0.75, label="Factor latente")
+    ax.plot(rolling.index, rolling.values, color=PALETTE_7, linewidth=2.0, label="Media móvil 60 días")
     ax.axhline(0.0, color="black", linewidth=0.8, alpha=0.6)
-    ax.set_title("Factor latente final")
+    set_title_and_legend(ax, "Factor latente final", ncol=2)
     ax.set_ylabel("Nivel")
-    ax.legend(loc="upper left", frameon=False)
+    apply_axis_style(ax)
     ax.grid(alpha=0.25)
     save_current_figure(PLOTS_DIR / "latent_factor.png")
 
@@ -74,38 +107,16 @@ def plot_latent_factor(factor: pd.DataFrame) -> None:
 def plot_original_series(raw_panel: pd.DataFrame) -> None:
     indexed = raw_panel.divide(raw_panel.iloc[0]).multiply(100.0)
 
-    fig, ax = plt.subplots(figsize=(14, 6))
-
+    fig, ax = plt.subplots(figsize=FIGURE_SIZE)
     fig.patch.set_facecolor("#E0E1E5")
     ax.set_facecolor("#E0E1E5")
 
     for column in indexed.columns:
         ax.plot(indexed.index, indexed[column], linewidth=1.3, label=column)
 
-    ax.set_title("Series originales indexadas a 100")
-    ax.set_ylabel("Indice base 100")
-
-    # quitar bordes superior y derecho
-    ax.spines["top"].set_visible(False)
-    ax.spines["right"].set_visible(False)
-
-    # mejorar bordes izquierdo e inferior
-    ax.spines["left"].set_linewidth(1.2)
-    ax.spines["bottom"].set_linewidth(1.2)
-
-    # ticks estilo académico
-    ax.tick_params(
-        axis="both",
-        which="major",
-        direction="out",
-        length=6,
-        width=1,
-        colors="black"
-    )
-
-    # leyenda sin fondo
-    ax.legend(loc="upper left", ncol=2, frameon=False)
-
+    set_title_and_legend(ax, "Series originales indexadas a 100", ncol=2)
+    ax.set_ylabel("Índice base 100")
+    apply_axis_style(ax)
     ax.grid(alpha=0.25)
 
     save_current_figure(PLOTS_DIR / "series_originales_indexadas.png")
@@ -115,8 +126,8 @@ def plot_transformed_series(transformed_panel: pd.DataFrame) -> None:
     fig, axes = plt.subplots(
         transformed_panel.shape[1],
         1,
-        figsize=(14, 2.6 * transformed_panel.shape[1]),
-        sharex=True
+        figsize=(FIGURE_SIZE[0], FIGURE_SIZE[1] * transformed_panel.shape[1]),
+        sharex=True,
     )
 
     fig.patch.set_facecolor("#E0E1E5")
@@ -125,38 +136,16 @@ def plot_transformed_series(transformed_panel: pd.DataFrame) -> None:
         axes = [axes]
 
     for ax, column in zip(axes, transformed_panel.columns):
-
         ax.set_facecolor("#E0E1E5")
-
         ax.plot(
             transformed_panel.index,
             transformed_panel[column],
             linewidth=1.0,
-            color="#0b6e4f"
+            color=PALETTE_2,
         )
-
         ax.axhline(0.0, color="black", linewidth=0.8, alpha=0.6)
-
-        ax.set_title(f"{column} transformada y estandarizada")
-
-        # quitar bordes superior y derecho
-        ax.spines["top"].set_visible(False)
-        ax.spines["right"].set_visible(False)
-
-        # mejorar bordes izquierdo e inferior
-        ax.spines["left"].set_linewidth(1.2)
-        ax.spines["bottom"].set_linewidth(1.2)
-
-        # ticks estilo académico
-        ax.tick_params(
-            axis="both",
-            which="major",
-            direction="out",
-            length=6,
-            width=1,
-            colors="black"
-        )
-
+        ax.set_title(f"{column} transformada y estandarizada", pad=20)
+        apply_axis_style(ax)
         ax.grid(alpha=0.25)
 
     save_current_figure(PLOTS_DIR / "series_transformadas.png")
@@ -166,17 +155,16 @@ def plot_factor_vs_inputs(factor: pd.DataFrame, transformed_panel: pd.DataFrame)
     merged = transformed_panel.copy()
     merged["latent_factor"] = factor.iloc[:, 0]
 
-    fig, ax = plt.subplots(figsize=(14, 6))
-
+    fig, ax = plt.subplots(figsize=FIGURE_SIZE)
     fig.patch.set_facecolor("#E0E1E5")
     ax.set_facecolor("#E0E1E5")
 
     ax.plot(
         merged.index,
         merged["latent_factor"],
-        color="#7f1d1d",
+        color=PALETTE_7,
         linewidth=2.2,
-        label="Factor latente"
+        label="Factor latente",
     )
 
     for column in transformed_panel.columns:
@@ -185,33 +173,21 @@ def plot_factor_vs_inputs(factor: pd.DataFrame, transformed_panel: pd.DataFrame)
             merged[column],
             linewidth=0.9,
             alpha=0.65,
-            label=column
+            label=column,
         )
 
-    ax.set_title("Factor latente vs series transformadas")
-
-    # quitar bordes superior y derecho
-    ax.spines["top"].set_visible(False)
-    ax.spines["right"].set_visible(False)
-
-    # mejorar bordes izquierdo e inferior
-    ax.spines["left"].set_linewidth(1.2)
-    ax.spines["bottom"].set_linewidth(1.2)
-
-    # ticks estilo académico
-    ax.tick_params(
-        axis="both",
-        which="major",
-        direction="out",
-        length=6,
-        width=1,
-        colors="black"
+    set_title_and_legend(
+        ax,
+        "Factor latente vs series transformadas",
+        ncol=len(transformed_panel.columns) + 1,
+        
     )
-
-    # leyenda sin fondo
-    ax.legend(loc="upper left", ncol=3, frameon=False)
-
+    apply_axis_style(ax)
+    ax.xaxis.set_major_locator(mdates.YearLocator(base=2))
+    ax.xaxis.set_major_formatter(mdates.DateFormatter("%Y"))
     ax.grid(alpha=0.25)
+    ax.set_ylabel("Nivel estandarizado")
+    ax.set_xlabel("Fecha")
 
     save_current_figure(PLOTS_DIR / "factor_vs_series_transformadas.png")
 
@@ -226,109 +202,98 @@ def plot_diagnostics(metadata: Dict) -> None:
         ["ljung_box_pvalue", "jarque_bera_pvalue", "arch_pvalue"]
     ]
 
-    fig, axes = plt.subplots(1, 3, figsize=(16, 4.5), sharey=True)
+    fig, axes = plt.subplots(1, 3, figsize=FIGURE_SIZE, sharey=True)
     fig.patch.set_facecolor("#E0E1E5")
 
     titles = {
-        "ljung_box_pvalue": "Ljung-Box p-value",
-        "jarque_bera_pvalue": "Jarque-Bera p-value",
-        "arch_pvalue": "ARCH p-value",
+        "ljung_box_pvalue": "Valor p de Ljung-Box",
+        "jarque_bera_pvalue": "Valor p de Jarque-Bera",
+        "arch_pvalue": "Valor p de ARCH",
     }
     colors = {
-        "ljung_box_pvalue": "#2563eb",
-        "jarque_bera_pvalue": "#dc2626",
-        "arch_pvalue": "#7c3aed",
+        "ljung_box_pvalue": PALETTE_3,
+        "jarque_bera_pvalue": PALETTE_7,
+        "arch_pvalue": PALETTE_5,
     }
 
     for ax, column in zip(axes, diagnostics_frame.columns):
         ax.set_facecolor("#E0E1E5")
-
         ax.barh(
             diagnostics_frame.index,
             diagnostics_frame[column],
             color=colors[column],
-            alpha=0.85
+            alpha=0.85,
         )
         ax.axvline(0.05, color="black", linestyle="--", linewidth=1.0, alpha=0.8)
-        ax.set_title(titles[column])
-
-        ax.spines["top"].set_visible(False)
-        ax.spines["right"].set_visible(False)
-
-        ax.spines["left"].set_linewidth(1.2)
-        ax.spines["bottom"].set_linewidth(1.2)
-
-        ax.tick_params(
-            axis="both",
-            which="major",
-            direction="out",
-            length=6,
-            width=1,
-            colors="black"
-        )
-
+        ax.set_title(titles[column], pad=20)
+        apply_axis_style(ax, time_axis=False)
         ax.grid(axis="x", alpha=0.25)
 
-    fig.suptitle("Diagnosticos del mejor modelo")
+    fig.suptitle("Diagnósticos del mejor modelo", fontsize=15, y=1.02)
     save_current_figure(PLOTS_DIR / "diagnosticos_mejor_modelo.png")
 
 
-def plot_dashboard(raw_panel: pd.DataFrame, transformed_panel: pd.DataFrame, factor: pd.DataFrame, metadata: Dict) -> None:
+def plot_dashboard(
+    raw_panel: pd.DataFrame,
+    transformed_panel: pd.DataFrame,
+    factor: pd.DataFrame,
+    metadata: Dict,
+) -> None:
     factor_series = factor.iloc[:, 0]
     rolling = factor_series.rolling(60, min_periods=20).mean()
     indexed = raw_panel.divide(raw_panel.iloc[0]).multiply(100.0)
 
-    fig, axes = plt.subplots(2, 2, figsize=(16, 10))
-
+    fig, axes = plt.subplots(2, 2, figsize=(10, 8))
     fig.patch.set_facecolor("#E0E1E5")
 
-    # aplicar fondo y estilo a todos los subplots
     for ax in axes.flatten():
         ax.set_facecolor("#E0E1E5")
+        apply_axis_style(ax)
 
-        ax.spines["top"].set_visible(False)
-        ax.spines["right"].set_visible(False)
-
-        ax.spines["left"].set_linewidth(1.2)
-        ax.spines["bottom"].set_linewidth(1.2)
-
-        ax.tick_params(
-            axis="both",
-            which="major",
-            direction="out",
-            length=6,
-            width=1,
-            colors="black"
-        )
-
-    axes[0, 0].plot(factor_series.index, factor_series.values, color="#1d4ed8", linewidth=1.0)
-    axes[0, 0].plot(rolling.index, rolling.values, color="#b91c1c", linewidth=2.0)
+    axes[0, 0].plot(
+        factor_series.index,
+        factor_series.values,
+        color=PALETTE_3,
+        linewidth=1.0,
+        label="Factor latente",
+    )
+    axes[0, 0].plot(
+        rolling.index,
+        rolling.values,
+        color=PALETTE_7,
+        linewidth=2.0,
+        label="Media móvil 60 días",
+    )
     axes[0, 0].axhline(0.0, color="black", linewidth=0.8, alpha=0.6)
-    axes[0, 0].set_title("Factor latente")
+    set_title_and_legend(axes[0, 0], "Factor latente", ncol=2)
     axes[0, 0].grid(alpha=0.25)
 
     for column in indexed.columns:
         axes[0, 1].plot(indexed.index, indexed[column], linewidth=1.1, label=column)
-    axes[0, 1].set_title("Series originales indexadas")
-    axes[0, 1].legend(loc="upper left", ncol=2, frameon=False)
+    set_title_and_legend(axes[0, 1], "Series originales indexadas", ncol=2)
     axes[0, 1].grid(alpha=0.25)
 
     for column in transformed_panel.columns:
-        axes[1, 0].plot(transformed_panel.index, transformed_panel[column], linewidth=0.9, alpha=0.8, label=column)
-    axes[1, 0].set_title("Series transformadas")
-    axes[1, 0].legend(loc="upper left", ncol=2, frameon=False)
+        axes[1, 0].plot(
+            transformed_panel.index,
+            transformed_panel[column],
+            linewidth=0.9,
+            alpha=0.8,
+            label=column,
+        )
+    set_title_and_legend(axes[1, 0], "Series transformadas", ncol=2)
     axes[1, 0].grid(alpha=0.25)
 
     best_model = metadata.get("best_model", {})
     text_lines = [
         "Mejor modelo",
-        f"k_factors: {best_model.get('k_factors')}",
-        f"factor_order: {best_model.get('factor_order')}",
-        f"error_order: {best_model.get('error_order')}",
-        f"cov: {best_model.get('error_cov_type')}",
+        f"Número de factores: {best_model.get('k_factors')}",
+        f"Orden del factor: {best_model.get('factor_order')}",
+        f"Orden del error: {best_model.get('error_order')}",
+        f"Covarianza: {best_model.get('error_cov_type')}",
         f"AIC: {best_model.get('aic')}",
-        f"converged: {best_model.get('converged')}",
-        f"diagnostics_passed: {best_model.get('diagnostics_passed_count')}/4",
+        f"Convergencia: {best_model.get('converged')}",
+        f"Diagnósticos aprobados: {best_model.get('diagnostics_passed_count')}/4",
     ]
 
     axes[1, 1].axis("off")
@@ -339,11 +304,9 @@ def plot_dashboard(raw_panel: pd.DataFrame, transformed_panel: pd.DataFrame, fac
         va="top",
         ha="left",
         fontsize=12,
-        family="monospace",
     )
 
     fig.suptitle("Resumen visual del DFM", fontsize=16)
-
     save_current_figure(PLOTS_DIR / "dashboard_dfm.png")
 
 

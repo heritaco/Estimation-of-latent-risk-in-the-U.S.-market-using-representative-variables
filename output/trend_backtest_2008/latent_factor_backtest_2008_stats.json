@@ -1,35 +1,44 @@
 {
   "training_start": "2004-11-18",
   "training_end_exclusive": "2008-01-01",
-  "backtest_start": "2008-01-01",
-  "backtest_end_exclusive": "2009-01-01",
+  "validation_start": "2008-01-01",
+  "validation_end_exclusive": "2008-06-01",
+  "test_start": "2008-06-02",
+  "test_end_exclusive": "2009-01-01",
   "n_train": 813,
-  "n_backtest": 262,
+  "n_validation": 109,
+  "n_test": 153,
   "difference_order": 2,
-  "selected_s_unit": 0.994838190906475,
-  "selected_validation_mse": 6.7894388878751775,
-  "training_volatility": 2.495149752679174,
-  "training_sigma2_hat": 7.048257204832522,
-  "interval_summary": {
+  "selection_rule": "global_best_with_first_local_reported",
+  "selected_s_unit": 0.999,
+  "selected_validation_mse": 3.693990353248175,
+  "first_local_s_unit": 0.7437288158765165,
+  "first_local_validation_mse": 3.5248994219244634,
+  "validation_rmse": 1.9219756380475208,
+  "test_rmse": 30.10332999982189,
+  "train_sigma2_hat": 10.595571692616126,
+  "training_change_volatility": 0.8120734132521166,
+  "training_level_residual_std": 3.195571918000339,
+  "test_interval_summary": {
     "90.0%": {
-      "outside_count": 0,
-      "outside_share": 0.0
+      "outside_count": 110,
+      "outside_share": 0.7189542483660131
     },
     "95.0%": {
-      "outside_count": 0,
-      "outside_share": 0.0
+      "outside_count": 107,
+      "outside_share": 0.6993464052287581
     },
     "97.5%": {
-      "outside_count": 0,
-      "outside_share": 0.0
+      "outside_count": 97,
+      "outside_share": 0.6339869281045751
     },
     "99.0%": {
-      "outside_count": 0,
-      "outside_share": 0.0
+      "outside_count": 81,
+      "outside_share": 0.5294117647058824
     },
     "99.9%": {
-      "outside_count": 0,
-      "outside_share": 0.0
+      "outside_count": 68,
+      "outside_share": 0.4444444444444444
     }
   }
 }

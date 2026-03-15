@@ -1,0 +1,20 @@
+name: redes
+channels:
+  - defaults
+dependencies:
+  - matplotlib
+  - ipython
+  - ipywidgets
+  - python=3.12
+  - plotly
+  - networkx
+  - pandas
+  - numpy
+  - ipykernel
+  - scipy
+  - jinja2
+  - nbformat
+  - seaborn
+  - statsmodels
+  - pandas-datareader
+prefix: C:\Users\herie\.conda\envs\redes
